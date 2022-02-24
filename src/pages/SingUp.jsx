@@ -1,7 +1,7 @@
-import React, { useState } from 'react'
-import createUserDocument from '../services/createUserDocument'
+import React, { useContext, useState } from 'react'
 import fire from '../services/firebase-config'
 import { useNavigate } from 'react-router-dom'
+import { UserContext } from '../context'
 
 const initialState = {
   name: '',
@@ -10,6 +10,7 @@ const initialState = {
 }
 
 const SingUp = () => {
+  const { user } = useContext(UserContext)
   const [form, setForm] = useState(initialState)
   const navigate = useNavigate()
   const handleChange = ({ target }) => {
@@ -19,21 +20,13 @@ const SingUp = () => {
     })
   }
 
-  if (user) {
-    return <Navigate replace to={`/${user.uid}`} />
-  }
-
   const handleSubmit = async (e) => {
     e.preventDefault()
-    /* Criando usuário */
     const newUser = await fire
       .auth()
       .createUserWithEmailAndPassword(form.email, form.password)
-    console.log(newUser.user)
-    /* Atualizando usuário */
+
     newUser.user.updateProfile({ displayName: form.name })
-    /* Criando documento de usuário no banco */
-    createUserDocument(newUser.user)
 
     navigate(`/${user.uid}`)
   }
