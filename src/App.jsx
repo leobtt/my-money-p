@@ -1,6 +1,7 @@
 import React, { useContext } from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import { SignUp, SignIn, Home, Sidebar } from './pages'
+import { SignUp, SignIn, Home } from './pages'
+import Sidebar from './layout/Sidebar'
 import { UserContext } from './context'
 
 function App() {
@@ -11,7 +12,9 @@ function App() {
         <Route path="Cadastrar" element={<SignUp />} />
         <Route path="Login" element={<SignIn />} />
 
-        <Route path={`${user?.uid}/movimentacoes/:data`} element={<Home />} />
+        <Route path="" element={<Sidebar />}>
+          <Route path="/" element={<Home />} />
+        </Route>
       </Routes>
     </BrowserRouter>
   )
