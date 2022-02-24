@@ -6,13 +6,16 @@ const useGetUser = () => {
   const [user, setUser] = useState(null)
 
   useEffect(() => {
-    fire.auth().onAuthStateChanged((currentUser) => {
-      if (currentUser) {
-        setUser(currentUser)
-      } else {
-        setUser(null)
-      }
-    })
+    const getValue = async () => {
+      await fire.auth().onAuthStateChanged((currentUser) => {
+        if (currentUser) {
+          setUser(currentUser)
+        } else {
+          setUser(null)
+        }
+      })
+    }
+    getValue()
   }, [])
 
   return user
@@ -20,6 +23,7 @@ const useGetUser = () => {
 
 const Context = (props) => {
   const user = useGetUser()
+
   return (
     <UserContext.Provider value={{ user }}>
       {props.children}
