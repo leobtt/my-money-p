@@ -48,3 +48,25 @@ exports.somatoria = functions.database
       }
     })
   })
+
+exports.createUserDocument = functions.auth.user().onCreate(async (user) => {
+  const date = new Date()
+  const year = date.getFullYear()
+  const month = (date.getMonth() + 1).toString().padStart(2, '0')
+  const composition = `${month}-${year}`
+  const userRef = admin
+    .database()
+    .ref(`${user.uid}/movimentacoes/${composition}`)
+  const snapshot = await userRef.get()
+
+  if (!snapshot.exists()) {
+    await userRef.push({
+      categoria: 'Compras',
+      valor: 0,
+      receita: false,
+      descricao: 'exemplo',
+      data: `${date.getDate()}/${month}/${year}`,
+      createdAt: date.getTime(),
+    })
+  }
+})
