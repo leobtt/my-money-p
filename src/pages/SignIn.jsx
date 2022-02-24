@@ -9,13 +9,7 @@ const SignIn = () => {
   const { user } = useContext(UserContext)
 
   if (user) {
-    return (
-      <Navigate
-        replace
-        to={`/${user.uid}/02-2022
-    `}
-      />
-    )
+    return <Navigate replace to="/" />
   }
 
   const handleChange = (evt) => {
