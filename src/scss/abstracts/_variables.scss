@@ -1,0 +1,41 @@
+$dark: (
+  mainColor: #251e1e,
+  background:
+    linear-gradient(
+      to top left,
+      #5c3131 49.85%,
+      #f8f8f8 49.85% 50%,
+      #3a3d46 50%
+    ),
+  background1: #3a3d46,
+  text: #ffffff,
+  receitaHover: #273432,
+  despesaHover: #592424,
+  saldoHover: #591ab1,
+  iconSaldoHover: #fdb64c,
+);
+
+$light: (
+  mainColor: #f8f8f8,
+  background:
+    linear-gradient(
+      to top left,
+      #835252 49.85%,
+      #f8f8f8 49.85% 50%,
+      #747989 50%
+    ),
+  background1: #747989,
+  text: #1f1f1f,
+  receitaHover: #2d938e,
+  despesaHover: #592424,
+  saldoHover: #591ab1,
+  iconSaldoHover: #fdb64c,
+);
+
+$themes: (
+  true: $dark,
+  false: $light,
+);
+
+$tablet-width: 1366px;
+$mobile-width: 600px;
