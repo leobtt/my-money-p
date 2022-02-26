@@ -18,4 +18,107 @@ body {
   height: 100%;
 }
 
-/* layout > Sidebar */
+/*  Sidebar */
+
+.sidebar {
+  @include flex(stretch, stretch);
+  flex-direction: column;
+  text-align: center;
+  width: 250px;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  @include themify($themes) {
+    color: themed(text);
+    background-color: themed(mainColor);
+  }
+
+  &__menu {
+    flex-grow: 1;
+    margin-left: 30px;
+    overflow-y: auto;
+
+    &::-webkit-scrollbar {
+      width: 0.8rem;
+
+      &-track {
+        -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+      }
+
+      &-thumb {
+        background-color: darkgrey;
+        border-radius: 10px;
+      }
+    }
+
+    &__link {
+      padding: 15px 20px 15px 0px;
+      margin: 10px 0;
+      width: 100%;
+      text-align: center;
+
+      &:hover {
+        border-top-left-radius: 20px;
+        border-bottom-left-radius: 20px;
+        cursor: pointer;
+        @include themify($themes) {
+          background-color: themed(button);
+          transition: background color 350ms ease-in-out;
+          color: green;
+        }
+      }
+
+      &.active {
+        border-top-left-radius: 20px;
+        border-bottom-left-radius: 20px;
+        cursor: pointer;
+        @include themify($themes) {
+          background-color: themed(button);
+          transition: background 350ms ease-in-out;
+        }
+      }
+
+      &:last-child {
+        @include flex(stretch, flex-start);
+        position: fixed;
+        margin: 0;
+        bottom: 0;
+        left: 0;
+        background-color: unset;
+        padding: unset;
+
+        select {
+          border: 0;
+          padding: 10px 15px;
+          border-top: 5px solid black;
+
+          option {
+            @include themify($themes) {
+              color: themed(text);
+              background-color: themed(mainColor);
+            }
+          }
+        }
+
+        button {
+          border: 0;
+          border-top: 5px solid black;
+          background: palegoldenrod;
+          padding: 8px;
+
+          &:hover {
+            background-color: peru;
+          }
+        }
+      }
+    }
+  }
+
+  h2 {
+    padding: 40px 0;
+    margin: 0 auto;
+    font-size: 20px;
+    font-weight: 300;
+  }
+}
