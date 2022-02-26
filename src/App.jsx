@@ -1,8 +1,8 @@
 import React, { useContext } from 'react'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
 import { SignUp, SignIn, Home } from './pages'
-import Sidebar from './layout/Sidebar'
 import { UserContext } from './context'
+import './scss/app.scss'
 
 function App() {
   const { user } = useContext(UserContext)
@@ -10,11 +10,9 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="Cadastrar" element={<SignUp />} />
-        <Route path="Login" element={<SignIn />} />
+        <Route path="Entrar" element={<SignIn />} />
 
-        <Route path="" element={<Sidebar />}>
-          <Route path="/" element={<Home />} />
-        </Route>
+        <Route path="" element={<Home />}></Route>
       </Routes>
     </BrowserRouter>
   )

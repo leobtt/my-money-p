@@ -1,7 +1,7 @@
 import React, { useState, useContext } from 'react'
-import { fire } from '../services'
+import { fire } from '../../services'
 import { useNavigate, Navigate } from 'react-router-dom'
-import { UserContext } from '../context'
+import { UserContext } from '../../context'
 
 const SignIn = () => {
   const [form, setForm] = useState({ email: null, password: null })

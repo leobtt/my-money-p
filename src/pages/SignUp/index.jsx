@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react'
-import fire from '../services/firebase-config'
+import fire from '../../services/firebase-config'
 import { useNavigate } from 'react-router-dom'
-import { UserContext } from '../context'
+import { UserContext } from '../../context'
 
 const initialState = {
   name: '',
