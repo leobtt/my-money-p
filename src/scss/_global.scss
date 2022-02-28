@@ -6,6 +6,9 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  @include themify($themes) {
+    transition: background 10ms ease-in-out, color 10ms ease-in-out;
+  }
 }
 
 html {
