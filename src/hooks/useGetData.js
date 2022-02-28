@@ -12,7 +12,6 @@ const useGetData = (path) => {
       ref.on('value', (snapshot) => {
         setData(snapshot.val())
       })
-
       return () => {
         ref.off()
       }
