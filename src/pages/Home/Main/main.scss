@@ -1,0 +1,62 @@
+@use '../../../scss/abstracts/' as *;
+
+.main {
+  @include flex(flex-start, flex-start);
+  flex-direction: column;
+  padding: 35px 4rem;
+
+  width: 100%;
+  height: 100vh;
+  @include themify($themes) {
+    background: themed(background);
+    color: themed(text);
+  }
+
+  &__top {
+    @include flex(center, space-between);
+    width: 100%;
+
+    &__dash {
+      @include flex();
+
+      &__icon {
+        @include themify($themes) {
+          color: themed(text);
+          font-size: 4rem;
+        }
+      }
+      &__info {
+        @include flex(flex-start, center);
+        flex-direction: column;
+        margin-left: 0.7rem;
+
+        h2 {
+          font-size: 1.5rem;
+          font-weight: 400;
+        }
+
+        span {
+          margin-left: 1px;
+          font-size: 1rem;
+          font-weight: 200;
+        }
+      }
+    }
+
+    &__theme {
+      @include flex();
+
+      &__logo {
+        font-size: 1.5rem;
+        margin-left: 2rem;
+        padding: 1.3rem 2rem;
+        border-radius: 50px;
+        @include themify($themes) {
+          background-color: themed(mainColor);
+        }
+      }
+    }
+  }
+}
+
+/* Input range theme select */
