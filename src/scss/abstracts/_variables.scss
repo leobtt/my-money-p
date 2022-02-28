@@ -9,6 +9,7 @@ $themes: (
         #747989 50%
       ),
     button: #747989,
+    buttonText: #835252,
     text: #1f1f1f,
     receitaHover: #2d938e,
     despesaHover: #592424,
@@ -16,15 +17,16 @@ $themes: (
     iconSaldoHover: #fdb64c,
   ),
   dark: (
-    mainColor: #251e1e,
+    mainColor: #191b1c,
     background:
       linear-gradient(
         to top left,
-        #5c3131 49.85%,
-        #f8f8f8 49.85% 50%,
-        #3a3d46 50%
+        #4a2727 49.85%,
+        #1c1e1f 49.85% 50%,
+        #262a2b 50%
       ),
     button: #3a3d46,
+    buttonText: #5c3131,
     text: #ffffff,
     receitaHover: #273432,
     despesaHover: #592424,
