@@ -3,20 +3,20 @@ import { UserContext } from '../../context'
 import { Navigate } from 'react-router-dom'
 import useGetData from '../../hooks/useGetData'
 import Sidebar from './Sidebar'
+import Main from './Main'
 
 const Home = () => {
-  const { user } = useContext(UserContext)
+  const { user, globalTheme } = useContext(UserContext)
   const data = useGetData('')
-  const [theme, setTheme] = useState(false)
 
   if (!user || user.length <= 1) {
     return <Navigate replace to="/entrar" />
   }
 
   return (
-    <div className={`${theme === false ? 'theme-dark' : 'theme-light'}`}>
+    <div className={`${globalTheme}`}>
       <Sidebar />
-
+      <Main />
       {/* {user && <pre>{JSON.stringify(user.uid, null, 3)}</pre>}
       {data && <pre>{JSON.stringify(data, null, 3)}</pre>} */}
     </div>
