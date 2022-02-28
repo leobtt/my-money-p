@@ -7,9 +7,12 @@ const SignIn = () => {
   const [form, setForm] = useState({ email: null, password: null })
   const navigate = useNavigate()
   const { user } = useContext(UserContext)
+  const date = `${(new Date().getMonth() + 1)
+    .toString()
+    .padStart(2, '0')}-${new Date().getFullYear()}`
 
   if (user) {
-    return <Navigate replace to="/" />
+    return <Navigate replace to={`/${date}`} />
   }
 
   const handleChange = (evt) => {
