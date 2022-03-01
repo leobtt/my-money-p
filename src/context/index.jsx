@@ -22,7 +22,7 @@ const useGetUser = () => {
 }
 
 const Context = (props) => {
-  const [theme, setTheme] = useState(false)
+  const [theme, setTheme] = useState('theme-dark')
   const user = useGetUser()
 
   const value = {

@@ -12,7 +12,6 @@ const Home = () => {
   if (!user || user.length <= 1) {
     return <Navigate replace to="/entrar" />
   }
-
   return (
     <div className={`${globalTheme}`}>
       <Sidebar />

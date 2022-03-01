@@ -6,9 +6,8 @@ const CheckboxTheme = () => {
   const { setGlobalTheme, globalTheme } = useContext(UserContext)
 
   const handleClick = (e) => {
-    setGlobalTheme(e.target.checked ? 'theme-dark' : 'theme-light')
+    setGlobalTheme(e.target.checked ? 'theme-light' : 'theme-dark')
   }
-  console.log(globalTheme)
   return (
     <>
       <input

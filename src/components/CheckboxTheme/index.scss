@@ -24,12 +24,12 @@ input[type='checkbox'].toggle {
     width: 4rem;
     height: 2.5rem;
     border-radius: 2rem;
-    background-color: white;
+    background-color: black;
     transition: background-color 400ms ease;
   }
 
   &:checked + label::before {
-    background-color: black;
+    background-color: white;
     transition: background-color 400ms ease, left 300ms ease;
   }
 
@@ -41,23 +41,23 @@ input[type='checkbox'].toggle {
     position: absolute;
     top: 0;
     left: 0px;
-    content: '\2600';
+    content: '\262A';
     font-size: 1.8rem;
-    color: yellow;
+    color: white;
     width: 2.5rem;
     height: 2.5rem;
     border-radius: 1em;
-    background-color: black;
+    background-color: #4a2727;
     transition: background-color 400ms ease, left 300ms ease;
 
     animation: check-fade 200ms ease-in-out forwards reverse;
   }
 
   &:checked + label::after {
-    color: black;
-    content: '\262A';
+    color: yellow;
+    content: '\2600';
     left: 1.6rem;
-    background-color: white;
+    background-color: #835252;
     transition: background-color 400ms ease, left 300ms ease;
 
     animation: check-fade 400ms ease-in-out forwards;
@@ -82,13 +82,13 @@ input[type='checkbox'].toggle {
 @keyframes check-fade {
   0% {
     opacity: 1;
-    content: '\2600';
+    content: '\262A';
   }
   50% {
     opacity: 0;
   }
   100% {
     opacity: 1;
-    content: '\262A';
+    content: '\2600';
   }
 }
