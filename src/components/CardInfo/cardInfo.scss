@@ -2,7 +2,7 @@
 
 .alignLine {
   @include flex();
-  margin: 4rem 0;
+  margin-top: 3rem;
 }
 
 .card {
@@ -12,7 +12,7 @@
   padding: 2rem 2rem 2.5rem 2rem;
   width: 280px;
   height: 230px;
-  margin: 1rem;
+  margin: 0 1rem;
 
   @include themify($themes) {
     background-color: themed(mainColor);
