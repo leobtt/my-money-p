@@ -1,8 +1,12 @@
-export const rewriteDate = (date) => {
+export const rewriteDate = (date, order) => {
   const month = date.split('-')[0]
 
   const format = (value) => {
-    return `${value} de ${date.split('-')[1]}`
+    if (order === true) {
+      return `${date.split('-')[1]} de ${value}`
+    } else {
+      return `${value} de ${date.split('-')[1]}`
+    }
   }
 
   if (month === '01') {
