@@ -3,6 +3,7 @@
 .top {
   @include flex(center, space-between);
   width: 100%;
+  padding: 0 1rem;
 
   &__dash {
     @include flex();
@@ -10,7 +11,7 @@
     &__icon {
       @include themify($themes) {
         color: themed(text);
-        font-size: 4rem;
+        font-size: 3.4rem;
       }
     }
     &__info {
@@ -19,13 +20,13 @@
       margin-left: 0.7rem;
 
       h2 {
-        font-size: 1.5rem;
-        font-weight: 400;
+        font-size: 1.3rem;
+        font-weight: 300;
       }
 
       span {
         margin-left: 1px;
-        font-size: 1rem;
+        font-size: 0.95rem;
         font-weight: 200;
       }
     }
@@ -35,9 +36,9 @@
     @include flex();
 
     &__logo {
-      font-size: 1.5rem;
+      font-size: 1.3rem;
       margin-left: 2rem;
-      padding: 1.3rem 2rem;
+      padding: 1.3rem 4.5rem;
       border-radius: 50px;
       @include themify($themes) {
         background-color: themed(mainColor);

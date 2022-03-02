@@ -11,9 +11,9 @@ const SignIn = () => {
     .toString()
     .padStart(2, '0')}-${new Date().getFullYear()}`
 
-  if (user) {
+  /* if (user) {
     return <Navigate replace to={`/${date}`} />
-  }
+  } */
 
   const handleChange = (evt) => {
     setForm({
@@ -27,7 +27,8 @@ const SignIn = () => {
       .auth()
       .signInWithEmailAndPassword(form.email, form.password)
     console.log('login', login)
-    navigate(`/${user.uid}/02-2022`)
+    localStorage.setItem('uid', login.user.uid)
+    navigate(`/`)
   }
 
   return (

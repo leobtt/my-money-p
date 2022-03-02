@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react'
+import React, { useContext, useDebugValue, useEffect, useState } from 'react'
 import './cardInfo.scss'
 import {
   ArrowUpward,
@@ -11,28 +11,39 @@ import { useParams } from 'react-router-dom'
 import { fire } from '../../services'
 import { rewriteDateCard } from '../../utils/rewriteDateCard'
 
+/* TESTE */
+
 const CardInfo = () => {
   const { date } = useParams()
-  const data = useGetData(`/meses/${date}`)
+  const [data, setData] = useState(null)
   const lastDates = useGetData('/ultimasDatas')
-  const [timestamps, setTimestamps] = useState(null)
+  useDebugValue(data ?? 'loading...')
+
+  useEffect(() => {
+    const uid = localStorage.getItem('uid')
+    const ref = fire.database().ref(uid + '/meses/' + date)
+    ref.on('value', (snapshot) => {
+      console.log('data', snapshot.val())
+      setData(snapshot.val())
+    })
+  }, [date])
 
   const getTitle = (title) => {
     if (title === 'entradas') {
       return {
         title: 'Receitas',
-        icon: <ArrowUpward style={{ fontSize: 45, color: '#3B9654' }} />,
+        icon: <ArrowUpward style={{ fontSize: 40, color: '#3B9654' }} />,
       }
     } else if (title === 'saidas') {
       return {
-        title: 'Receitas',
-        icon: <ArrowDownward style={{ fontSize: 45, color: '#FF1313' }} />,
+        title: 'Despesas',
+        icon: <ArrowDownward style={{ fontSize: 40, color: '#FF1313' }} />,
       }
     } else if (title === 'saldo') {
       return {
-        title: 'Receitas',
+        title: 'Saldo',
         icon: (
-          <AttachMoneyOutlined style={{ fontSize: 45, color: '#9122E8' }} />
+          <AttachMoneyOutlined style={{ fontSize: 40, color: '#9122E8' }} />
         ),
       }
     }
@@ -42,17 +53,43 @@ const CardInfo = () => {
     <div className="alignLine">
       {data &&
         Object.keys(data).map((item, index) => {
+          const checkNegativeValue = data[item].toString().startsWith('-')
+
+          const formatValue = checkNegativeValue
+            ? data[item].toString().split('-')[1]
+            : data[item]
+
+          const checkValueColor = (color) => {
+            const zeroValue = data[item].toString().startsWith('0')
+
+            if (zeroValue) {
+              return 'zero'
+            } else if (!checkNegativeValue) {
+              return 'greenValue'
+            } else {
+              return 'redValue'
+            }
+          }
+
           return (
             <div className="card" key={index}>
               <div className="card__info">
-                <h3>{getTitle(item).title}</h3>
-                {getTitle(item).icon}
+                <h3>{item && getTitle(item).title}</h3>
+                {item && getTitle(item).icon}
               </div>
               <div className="card__value">
-                <span>R$ {data[item]}</span>
-                {lastDates && (
+                {
+                  <span className={checkValueColor(data[item])}>
+                    R$ {parseFloat(formatValue).toFixed(2)}
+                  </span>
+                }
+
+                {lastDates && lastDates[item] === false && (
+                  <p>Nenhuma transação encontrada</p>
+                )}
+                {lastDates && lastDates[`${item}`] !== false && (
                   <p>
-                    Última entrada dia{' '}
+                    Última transação dia{' '}
                     {rewriteDateCard(
                       new Date(lastDates[`${item}`]).getMonth(),
                       new Date(lastDates[`${item}`]).getDate()

@@ -3,16 +3,19 @@
 .alignLine {
   @include flex();
   margin-top: 3rem;
+  width: 100%;
 }
 
 .card {
   @include flex(space-between, space-between);
   flex-direction: column;
   border-radius: 20px;
-  padding: 2rem 2rem 2.5rem 2rem;
-  width: 280px;
-  height: 230px;
-  margin: 0 1rem;
+  padding: 1.5rem 2rem 2rem 2rem;
+  width: 100%;
+  min-width: 245px;
+
+  height: 210px;
+  margin: 0 0.5rem;
 
   @include themify($themes) {
     background-color: themed(mainColor);
@@ -24,13 +27,30 @@
     @include flex(center, space-between);
 
     h3 {
-      font-weight: 300;
+      font-size: 18px;
+      font-weight: 500;
     }
   }
 
   &__value {
+    span {
+      font-size: 20px;
+    }
+
+    .zero {
+      @include themify($themes) {
+        color: themed(textCard);
+      }
+    }
+    .greenValue {
+      color: #3b9654;
+    }
+    .redValue {
+      color: #fe3030;
+    }
+
     p {
-      font-size: 0.85rem;
+      font-size: 0.7rem;
       font-weight: 200;
       margin-left: 1px;
     }
