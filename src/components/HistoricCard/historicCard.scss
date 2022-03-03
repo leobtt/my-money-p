@@ -1,33 +1,33 @@
 @use '../../scss/abstracts/' as *;
 
 .title {
-  margin: 3rem 0 2rem 0;
+  margin: 3rem 0 1.5rem 0;
   font-size: 1.5rem;
   font-weight: 400;
 }
 
 .transaction {
+  margin: 0 0 1.2rem 0;
   @include flex(center, space-between);
   border-radius: 10px;
   height: 80px;
   width: 100%;
-  min-width: 600px;
   padding: 2rem 4rem;
 
   @include themify($themes) {
     background-color: themed(mainColor);
     color: themed(textCard);
-    box-shadow: 0px 0px 10px 5px rgba(0, 0, 0, 0.25);
+    box-shadow: 0px 0px 18px 0px rgba(0, 0, 0, 0.25);
   }
 
   &__value {
-    @include flex();
+    @include flex(center, center);
     flex-direction: column;
+    width: 100px;
 
     span {
       &:first-child {
-        color: green;
-        font-weight: 700;
+        font-weight: 500;
         font-size: 15px;
       }
 
@@ -36,13 +36,31 @@
         font-weight: 200;
       }
     }
+
+    .zero {
+      @include themify($themes) {
+        color: themed(textCard);
+      }
+    }
+
+    .greenValue {
+      color: #3b9654;
+    }
+
+    .redValue {
+      color: #fe3030;
+    }
   }
 
   &__category {
-    @include flex(center, center);
+    @include flex(center, flex-start);
+    width: 125px;
 
     span {
       margin-left: 1rem;
     }
+  }
+  &__date {
+    width: 80px;
   }
 }

@@ -1,0 +1,15 @@
+@use '../../scss/abstracts/' as *;
+
+.zero {
+  @include themify($themes) {
+    color: themed(textCard);
+  }
+}
+
+.greenValue {
+  color: #3b9654;
+}
+
+.redValue {
+  color: #fe3030;
+}

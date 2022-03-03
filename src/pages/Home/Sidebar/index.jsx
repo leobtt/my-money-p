@@ -6,6 +6,21 @@ import { useEffect } from 'react/cjs/react.development'
 import { rewriteDate } from '../../../utils/rewriteDate'
 import './sidebar.scss'
 
+const ShowMonths = [
+  '01',
+  '02',
+  '03',
+  '04',
+  '05',
+  '06',
+  '07',
+  '08',
+  '09',
+  '10',
+  '11',
+  '12',
+]
+
 const Sidebar = () => {
   const [activeIndex, setActiveIndex] = useState()
   const { saveData } = usePost()
@@ -21,7 +36,8 @@ const Sidebar = () => {
   }, [location])
 
   const handleClick = () => {
-    saveData(`${month.current.value}-${year.current.value}`)
+    const date = `${month.current.value}-${year.current.value}`
+    saveData(date, date)
   }
 
   return (
@@ -45,8 +61,9 @@ const Sidebar = () => {
       </div>
       <div className="sidebar__month">
         <select name="month" defaultValue="01" ref={month}>
-          <option value="01">01</option>
-          <option value="05">05</option>
+          {ShowMonths.map((month) => (
+            <option value={month}>{month}</option>
+          ))}
         </select>
         <select name="year" defaultValue={new Date().getFullYear()} ref={year}>
           <option value="2022">2022</option>

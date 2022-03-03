@@ -8,7 +8,7 @@ const usePost = () => {
   const [status, setStatus] = useState(null)
 
   const saveData = async (date, data) => {
-    const ref = await fire.database().ref(`${user.uid}/movimentacoes/04-2025`)
+    const ref = await fire.database().ref(`${user.uid}/movimentacoes/${date}`)
 
     // pegando os dados do realtime
     const snapshot = await ref.get()

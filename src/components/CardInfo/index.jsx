@@ -23,7 +23,6 @@ const CardInfo = () => {
     const uid = localStorage.getItem('uid')
     const ref = fire.database().ref(uid + '/meses/' + date)
     ref.on('value', (snapshot) => {
-      console.log('data', snapshot.val())
       setData(snapshot.val())
     })
   }, [date])

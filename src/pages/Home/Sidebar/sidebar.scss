@@ -17,7 +17,7 @@
   }
 
   @include themify($themes) {
-    color: themed(text);
+    color: themed(textCard);
     background-color: themed(mainColor);
   }
 
@@ -42,9 +42,9 @@
         border-bottom-left-radius: 20px;
         cursor: pointer;
         @include themify($themes) {
-          background-color: themed(button);
+          background-color: themed(background);
           transition: background 150ms;
-          box-shadow: 10px 3px 5px 2px themed(buttonText);
+          box-shadow: 10px 5px 5px 0px themed(buttonText);
         }
       }
 
@@ -53,9 +53,9 @@
         border-bottom-left-radius: 20px;
         cursor: pointer;
         @include themify($themes) {
-          background-color: themed(button);
+          background-color: themed(background);
           transition: background 350ms ease-in-out;
-          box-shadow: 10px 3px 5px 2px themed(buttonText);
+          box-shadow: 10px 5px 5px 2px themed(buttonText);
         }
       }
     }
@@ -76,16 +76,19 @@
   }
 
   &__month {
-    display: inline-block;
+    @include flex();
+    width: 100%;
 
     select {
       border: 0;
       border-top: 5px solid black;
-      padding: 14px 11px;
+      width: 100%;
+
+      padding: 0.95rem 12px;
       font-weight: 700;
       @include themify($themes) {
         color: themed(text);
-        background-color: themed(mainColor);
+        background-color: themed(background);
       }
 
       option {
@@ -97,9 +100,12 @@
     }
 
     button {
+      width: 100%;
+      min-width: 100px;
+
       border: 0;
       border-top: 5px solid black;
-      padding: 15px 15px;
+      padding: 1rem 0;
       @include themify($themes) {
         color: themed(text);
         background-color: themed(mainColor);
