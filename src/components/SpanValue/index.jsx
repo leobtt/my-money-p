@@ -2,8 +2,10 @@ const rewriteValue = ({ value, revenue }) => {
   const checkNegativeValue = value.toString().startsWith('-')
 
   const formatValue = checkNegativeValue
-    ? value.toString().split('-')[1]
-    : value
+    ? parseFloat(value.toString().split('-')[1]).toFixed(2)
+    : value.toFixed(2)
+
+  const formatComma = formatValue.toString().replace(/[.]/g, ',')
 
   const checkValueColor = (color) => {
     const zeroValue = value.toString().startsWith('0')
@@ -17,11 +19,7 @@ const rewriteValue = ({ value, revenue }) => {
     }
   }
 
-  return (
-    <span className={checkValueColor(value)}>
-      R$ {parseFloat(formatValue).toFixed(2)}
-    </span>
-  )
+  return <span className={checkValueColor(value)}>R$ {formatComma}</span>
 }
 
 export default rewriteValue
