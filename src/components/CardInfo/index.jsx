@@ -1,10 +1,6 @@
-import React, { useContext, useDebugValue, useEffect, useState } from 'react'
+import React, { useDebugValue, useEffect, useState } from 'react'
 import './cardInfo.scss'
-import {
-  ArrowUpward,
-  ArrowDownward,
-  AttachMoneyOutlined,
-} from '@mui/icons-material'
+import { ArrowUpward, ArrowDownward, AttachMoneyOutlined } from '@mui/icons-material'
 import useGetData from '../../hooks/useGetData'
 import { useParams } from 'react-router-dom'
 
@@ -41,9 +37,7 @@ const CardInfo = () => {
     } else if (title === 'saldo') {
       return {
         title: 'Saldo',
-        icon: (
-          <AttachMoneyOutlined style={{ fontSize: 40, color: '#9122E8' }} />
-        ),
+        icon: <AttachMoneyOutlined style={{ fontSize: 40, color: '#9122E8' }} />,
       }
     }
   }
@@ -55,8 +49,9 @@ const CardInfo = () => {
           const checkNegativeValue = data[item].toString().startsWith('-')
 
           const formatValue = checkNegativeValue
-            ? data[item].toString().split('-')[1]
-            : data[item]
+            ? parseFloat(data[item].toString().split('-')[1]).toFixed(2)
+            : data[item].toFixed(2)
+          const formatComma = formatValue.toString().replace(/[.]/g, ',')
 
           const checkValueColor = (color) => {
             const zeroValue = data[item].toString().startsWith('0')
@@ -77,15 +72,9 @@ const CardInfo = () => {
                 {item && getTitle(item).icon}
               </div>
               <div className="card__value">
-                {
-                  <span className={checkValueColor(data[item])}>
-                    R$ {parseFloat(formatValue).toFixed(2)}
-                  </span>
-                }
+                {<span className={checkValueColor(data[item])}>R$ {formatComma}</span>}
 
-                {lastDates && lastDates[item] === false && (
-                  <p>Nenhuma transação encontrada</p>
-                )}
+                {lastDates && lastDates[item] === false && <p>Nenhuma transação encontrada</p>}
                 {lastDates && lastDates[`${item}`] !== false && (
                   <p>
                     Última transação dia{' '}
