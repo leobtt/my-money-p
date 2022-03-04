@@ -6,20 +6,7 @@ import { useEffect } from 'react/cjs/react.development'
 import { rewriteDate } from '../../../utils/rewriteDate'
 import './sidebar.scss'
 
-const ShowMonths = [
-  '01',
-  '02',
-  '03',
-  '04',
-  '05',
-  '06',
-  '07',
-  '08',
-  '09',
-  '10',
-  '11',
-  '12',
-]
+const ShowMonths = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12']
 
 const Sidebar = () => {
   const [activeIndex, setActiveIndex] = useState()
@@ -50,9 +37,7 @@ const Sidebar = () => {
               <Link
                 to={month}
                 key={index}
-                className={`sidebar__menu__link ${
-                  month === activeIndex ? 'active' : ''
-                }`}
+                className={`sidebar__menu__link ${month === activeIndex ? 'active' : ''}`}
               >
                 {rewriteDate(month)}
               </Link>
@@ -61,8 +46,10 @@ const Sidebar = () => {
       </div>
       <div className="sidebar__month">
         <select name="month" defaultValue="01" ref={month}>
-          {ShowMonths.map((month) => (
-            <option value={month}>{month}</option>
+          {ShowMonths.map((month, index) => (
+            <option key={index} value={month}>
+              {month}
+            </option>
           ))}
         </select>
         <select name="year" defaultValue={new Date().getFullYear()} ref={year}>
