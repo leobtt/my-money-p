@@ -1,5 +1,5 @@
 import React from 'react'
-import { Delete } from '@mui/icons-material'
+import { DeleteForever } from '@mui/icons-material'
 import SpanValue from '../SpanValue'
 import WhichIcon from './WhichIcon'
 
@@ -24,7 +24,8 @@ const LoopCard = ({ data }) => {
       </div>
       <div className="transaction__date">
         <span>{composition}</span>
-        <Delete style={{ fontSize: '30px', color: '#c63939' }} />
+
+        <DeleteForever className="transaction__date__icon" />
       </div>
     </div>
   )

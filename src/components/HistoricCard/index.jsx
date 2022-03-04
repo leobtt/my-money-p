@@ -18,13 +18,26 @@ const HistoricCard = () => {
       .orderByChild('createdAt')
       .on('value', (snapshot) => {
         const feed = []
+        const data = snapshot.val()
 
-        snapshot.forEach((listSnap) => {
-          const list = listSnap.val()
-          feed.push(list)
+        /* console.log('data sem ordem', data[listSnap].createdAt) */
+        snapshot.forEach((values) => {
+          Object.keys(data).forEach((listSnap) => {
+            const value = values.val()
+
+            if (value.createdAt === data[listSnap].createdAt) {
+              feed.push([{ value, index: listSnap }])
+            }
+          })
         })
 
+        /* snapshot.forEach((listSnap) => {
+          const list = listSnap.val()
+          feed.push(list)
+        }) */
+
         setOrder(feed)
+        console.log(order)
       })
   }, [date])
   return (
@@ -46,7 +59,12 @@ const HistoricCard = () => {
         </div>
         {order &&
           Object.keys(order).map((item, index) => {
-            return <LoopCard key={index} data={order[item]} />
+            return (
+              <div>
+                {/* <LoopCard key={index} data={order[item]} /> */}
+                <p>teste</p>
+              </div>
+            )
           })}
       </div>
     </>

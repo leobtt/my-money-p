@@ -78,6 +78,12 @@
       span {
         margin-right: 4rem;
       }
+
+      &__icon {
+        cursor: pointer;
+        font-size: 30px;
+        color: #c63939;
+      }
     }
   }
 }
