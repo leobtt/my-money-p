@@ -6,61 +6,78 @@
   font-weight: 400;
 }
 
-.transaction {
-  margin: 0 0 1.2rem 0;
-  @include flex(center, space-between);
-  border-radius: 10px;
-  height: 80px;
+.alignTransaction {
+  display: block;
   width: 100%;
-  padding: 2rem 4rem;
+  height: calc(100vh - 470px);
+  overflow: auto;
+  margin: 10px 2rem;
 
-  @include themify($themes) {
-    background-color: themed(mainColor);
-    color: themed(textCard);
-    box-shadow: 0px 0px 18px 0px rgba(0, 0, 0, 0.25);
+  &::-webkit-scrollbar {
+    width: 0rem;
   }
 
-  &__value {
-    @include flex(center, center);
-    flex-direction: column;
-    width: 100px;
+  .transaction {
+    margin: 10px auto 1.2rem auto;
+    @include flex(center, space-between);
+    border-radius: 10px;
+    height: 80px;
+    width: calc(100% - 20px);
+    padding: 2rem 4rem;
 
-    span {
-      &:first-child {
-        font-weight: 500;
-        font-size: 15px;
+    @include themify($themes) {
+      background-color: themed(mainColor);
+      color: themed(textCard);
+      box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.25);
+    }
+
+    &__value {
+      @include flex(center, center);
+      flex-direction: column;
+      width: 100px;
+
+      span {
+        &:first-child {
+          font-weight: 500;
+          font-size: 15px;
+        }
+
+        &:last-child {
+          font-size: 14px;
+          font-weight: 200;
+        }
       }
 
-      &:last-child {
-        font-size: 14px;
-        font-weight: 200;
+      .zero {
+        @include themify($themes) {
+          color: themed(textCard);
+        }
+      }
+
+      .greenValue {
+        color: #3b9654;
+      }
+
+      .redValue {
+        color: #fe3030;
       }
     }
 
-    .zero {
-      @include themify($themes) {
-        color: themed(textCard);
+    &__category {
+      @include flex(center, flex-start);
+      width: 125px;
+
+      span {
+        margin-left: 1rem;
       }
     }
+    &__date {
+      @include flex(center, center);
+      width: 80px;
 
-    .greenValue {
-      color: #3b9654;
+      span {
+        margin-right: 4rem;
+      }
     }
-
-    .redValue {
-      color: #fe3030;
-    }
-  }
-
-  &__category {
-    @include flex(center, flex-start);
-    width: 125px;
-
-    span {
-      margin-left: 1rem;
-    }
-  }
-  &__date {
-    width: 80px;
   }
 }
