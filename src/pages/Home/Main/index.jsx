@@ -2,9 +2,10 @@ import React from 'react'
 import './main.scss'
 import Header from './Header'
 import CardInfo from '../../../components/CardInfo'
-import HistoricCard from '../../../components/HistoricCard'
+import TransactionCard from '../../../components/TransactionCard'
 
 import { fire } from '../../../services'
+import AlertMessage from '../../../components/AlertMessage'
 
 const Main = () => {
   const sair = () => {
@@ -18,7 +19,7 @@ const Main = () => {
       <div className="main__content">
         <div className="main__content__transactions">
           <CardInfo />
-          <HistoricCard />
+          <TransactionCard />
         </div>
         <div className="main__content__graphics">
           <button type="button" onClick={sair} style={{ padding: '20px' }}>

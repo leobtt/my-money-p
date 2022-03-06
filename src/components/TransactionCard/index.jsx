@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import useGetData from '../../hooks/useGetData'
-import './historicCard.scss'
+import './transactionCard.scss'
 
 import { fire } from '../../services'
 import LoopCard from './LoopCard'
+
+import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline'
 
 const HistoricCard = () => {
   const { date } = useParams()
@@ -24,48 +26,35 @@ const HistoricCard = () => {
         snapshot.forEach((values) => {
           Object.keys(data).forEach((listSnap) => {
             const value = values.val()
-
+            // ordenando e encontrando index
             if (value.createdAt === data[listSnap].createdAt) {
               feed.push([{ value, index: listSnap }])
             }
           })
         })
 
-        /* snapshot.forEach((listSnap) => {
-          const list = listSnap.val()
-          feed.push(list)
-        }) */
-
         setOrder(feed)
-        console.log(order)
       })
   }, [date])
   return (
     <>
-      <h2 className="title">Transações</h2>
+      <div className="alignTitle">
+        <h2 className="alignTitle__title">Transações</h2>
+        <button className="button-30">
+          <span className="text">
+            <AddCircleOutlineIcon />
+          </span>
+        </button>
+      </div>
+
       <div className="alignTransaction">
-        <div className="transaction">
-          <div className="transaction__value">
-            <span>R$1000,00</span>
-            <span>Convênio</span>
-          </div>
-          <div className="transaction__category">
-            {/* <Dashboard style={{ fontSize: '40px' }} /> */}
-            <span>Salário</span>
-          </div>
-          <div className="transaction__date">
-            <span>24/04/12</span>
-          </div>
-        </div>
-        {order &&
-          Object.keys(order).map((item, index) => {
-            return (
-              <div>
-                {/* <LoopCard key={index} data={order[item]} /> */}
-                <p>teste</p>
-              </div>
-            )
-          })}
+        {order?.map((item, index) => {
+          return (
+            <div key={index}>
+              <LoopCard key={index} data={item[0]} />
+            </div>
+          )
+        })}
       </div>
     </>
   )
