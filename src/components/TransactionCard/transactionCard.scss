@@ -3,14 +3,32 @@
 .alignTitle {
   margin: 40px 30px 0 20px;
   @include flex(center, space-between);
-  width: 94%;
+  width: 99%;
   &__title {
     font-size: 1.5rem;
     font-weight: 300;
+    padding: 0 30px;
   }
 
-  button {
+  .button {
     padding: 10px 20px;
+    border-radius: 10px;
+    border: 0;
+    box-shadow: 0px 1px 1px 1px rgba(0, 0, 0, 0.25);
+    @include themify($themes) {
+      background-color: themed(mainColor);
+      color: themed(textCard);
+      transition: color 0.3s ease-in-out;
+    }
+    transition: box-shadow 0.3s, border-radius 0.3s;
+
+    &:hover {
+      box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.5) inset;
+      border-radius: 11px;
+      @include themify($themes) {
+        color: themed(text);
+      }
+    }
   }
 }
 
@@ -36,7 +54,7 @@
     @include themify($themes) {
       background-color: themed(mainColor);
       color: themed(textCard);
-      box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.25);
+      box-shadow: 0px 1px 1px 1px rgba(0, 0, 0, 0.25);
     }
 
     &__value {
@@ -94,33 +112,4 @@
       }
     }
   }
-}
-/* <!-- HTML !-->
-<button class="button-30" role="button">Button 30</button>
- */
-/* CSS */
-.button-30 {
-  align-items: center;
-  appearance: none;
-  background-color: #fcfcfd;
-  border-radius: 4px;
-  border-width: 0;
-  box-shadow: rgba(45, 35, 66, 0.4) 0 2px 4px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px,
-    #d6d6e7 0 -3px 0 inset;
-  box-sizing: border-box;
-  color: #36395a;
-  cursor: pointer;
-  display: inline-flex;
-  font-family: 'JetBrains Mono', monospace;
-  height: 48px;
-
-  transition: box-shadow 0.15s, transform 0.15s;
-  user-select: none;
-  will-change: box-shadow, transform;
-}
-
-.button-30:hover {
-  box-shadow: rgba(45, 35, 66, 0.4) 0 4px 8px, rgba(45, 35, 66, 0.3) 0 7px 13px -3px,
-    #d6d6e7 0 -3px 0 inset;
-  transform: scale(1.1, 1);
 }

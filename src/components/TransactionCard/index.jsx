@@ -40,10 +40,8 @@ const HistoricCard = () => {
     <>
       <div className="alignTitle">
         <h2 className="alignTitle__title">Transações</h2>
-        <button className="button-30">
-          <span className="text">
-            <AddCircleOutlineIcon />
-          </span>
+        <button className="button">
+          <AddCircleOutlineIcon style={{ fontSize: '30px' }} />
         </button>
       </div>
 
