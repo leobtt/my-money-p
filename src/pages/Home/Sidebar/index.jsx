@@ -1,7 +1,7 @@
 import React, { useState, useRef } from 'react'
 import useGetData from '../../../hooks/useGetData'
 import usePost from '../../../hooks/usePost'
-import { Link, useLocation } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { useEffect } from 'react/cjs/react.development'
 import { rewriteDate } from '../../../utils/rewriteDate'
 import './sidebar.scss'
@@ -11,6 +11,7 @@ const ShowMonths = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', 
 const Sidebar = () => {
   const [activeIndex, setActiveIndex] = useState()
   const { saveData } = usePost()
+  const navigate = useNavigate()
 
   const month = useRef()
   const year = useRef()
@@ -24,7 +25,9 @@ const Sidebar = () => {
 
   const handleClick = () => {
     const date = `${month.current.value}-${year.current.value}`
-    saveData(date, date)
+
+    saveData(date, undefined)
+    navigate(`/${date}`)
   }
 
   return (
