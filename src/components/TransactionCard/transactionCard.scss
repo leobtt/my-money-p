@@ -60,7 +60,7 @@
     &__value {
       @include flex(center, center);
       flex-direction: column;
-      width: 100px;
+      width: 135px;
 
       span {
         &:first-child {
@@ -91,7 +91,7 @@
 
     &__category {
       @include flex(center, flex-start);
-      width: 125px;
+      width: 170px;
 
       span {
         margin-left: 1rem;
@@ -112,4 +112,12 @@
       }
     }
   }
+}
+
+.addTransaction {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 350px;
 }

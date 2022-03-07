@@ -39,10 +39,10 @@ export const rewriteDate = (date, order) => {
   if (month === '10') {
     return format('Outubro')
   }
-  if (month === 11) {
+  if (month === '11') {
     return format('Novembro')
   }
-  if (month === 12) {
+  if (month === '12') {
     return format('Dezembro')
   }
 }

@@ -6,6 +6,7 @@ import {
   DirectionsCar,
   Weekend,
   MenuBook,
+  Help,
 } from '@mui/icons-material'
 
 const WhichIcon = ({ category }) => {
@@ -29,6 +30,9 @@ const WhichIcon = ({ category }) => {
   }
   if (category === 'Salário') {
     return <Paid />
+  }
+  if (category === 'Outros') {
+    return <Help />
   } else {
     return <p>error</p>
   }

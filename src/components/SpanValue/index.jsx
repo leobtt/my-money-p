@@ -1,14 +1,14 @@
 const rewriteValue = ({ value, revenue }) => {
-  const checkNegativeValue = value.toString().startsWith('-')
+  const checkNegativeValue = value?.toString().startsWith('-')
 
   const formatValue = checkNegativeValue
-    ? parseFloat(value.toString().split('-')[1]).toFixed(2)
-    : value.toFixed(2)
+    ? parseFloat(value?.toString().split('-')[1]).toFixed(2)
+    : value?.toFixed(2)
 
-  const formatComma = formatValue.toString().replace(/[.]/g, ',')
+  const formatComma = formatValue?.toString().replace(/[.]/g, ',')
 
   const checkValueColor = (color) => {
-    const zeroValue = value.toString().startsWith('0')
+    const zeroValue = value?.toString().startsWith('0')
 
     if (zeroValue) {
       return 'zero'

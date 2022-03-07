@@ -13,7 +13,6 @@ const CardInfo = () => {
   const { date } = useParams()
   const [data, setData] = useState(null)
   const lastDates = useGetData('/ultimasDatas')
-  useDebugValue(data ?? 'loading...')
 
   useEffect(() => {
     const uid = localStorage.getItem('uid')
