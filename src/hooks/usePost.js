@@ -15,17 +15,34 @@ const usePost = () => {
 
     // verificando se a coleção do realtime existe
     if (!snapshot.exists()) {
-      return ref.set({ createdAt: new Date().getTime() }, (err) => {
-        if (err) console.log(err.message)
+      ref.set('vazio', (err) => {
+        if (err) setStatus({ error: err.message })
+        else setStatus({ success: 'Data cadastrada' })
       })
-    } else if (data !== undefined) {
-      return ref.push(data, (err) => {
-        if (err) console.log(err.message)
+    }
+    console.log(data)
+    if (data !== undefined) {
+      return ref.push({ ...data, createdAt: new Date().getTime() }, (err) => {
+        if (err) setStatus({ error: err.message })
+        else setStatus({ success: 'Item cadastrado' })
       })
     }
   }
 
-  return { saveData }
+  const saveDate = async (date, data) => {
+    const ref = await fire.database().ref(`${user.uid}/ultimasDatas/${date}`)
+
+    const timestamps = new Date().getTime()
+
+    //trocar por set ou achar um valor correspondente
+    if (data.receita === true) {
+      return ref.push({ entradas: timestamps, saldo: timestamps })
+    } else if (data.receita === false) {
+      return ref.push({ saidas: timestamps, saldo: timestamps })
+    }
+  }
+
+  return { saveData, saveDate, status }
 }
 
 export default usePost
