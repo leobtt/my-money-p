@@ -7,11 +7,14 @@ import { fire } from '../../services'
 import LoopCard from './LoopCard'
 
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline'
+import AddTransaction from '../../pages/Home/Main/AddTransaction'
+import { Translate } from '@mui/icons-material'
 
 const HistoricCard = () => {
   const { date } = useParams()
   const data = useGetData(`/movimentacoes/${date}`)
   const [order, setOrder] = useState(null)
+  const [addTransaction, setAddTransaction] = useState(false)
 
   useEffect(() => {
     fire
@@ -40,7 +43,7 @@ const HistoricCard = () => {
     <>
       <div className="alignTitle">
         <h2 className="alignTitle__title">Transações</h2>
-        <button className="button">
+        <button className="button" onClick={() => setAddTransaction(!addTransaction)}>
           <AddCircleOutlineIcon style={{ fontSize: '30px' }} />
         </button>
       </div>
@@ -54,6 +57,11 @@ const HistoricCard = () => {
           )
         })}
       </div>
+      {addTransaction && (
+        <div className={`addTransaction`}>
+          <AddTransaction close={setAddTransaction} />
+        </div>
+      )}
     </>
   )
 }

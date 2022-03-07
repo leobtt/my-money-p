@@ -1,0 +1,113 @@
+@use '../../../../scss/abstracts/' as *;
+
+.form {
+  @include flex(center, center);
+  flex-direction: column;
+  padding: 3rem 4rem;
+  border-radius: 10px;
+  position: relative;
+
+  @include themify($themes) {
+    background-color: themed(mainColor);
+    box-shadow: 0px 0px 10px 0px rgba(145, 34, 232, 0.25);
+  }
+
+  .closer {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+
+    &:hover {
+      color: rgba(145, 34, 232, 1);
+    }
+  }
+
+  h2 {
+    font-size: 20px;
+    font-weight: 200;
+    margin-bottom: 20px;
+  }
+
+  input,
+  select {
+    border: unset;
+    border-radius: 2px;
+    padding: 10px 20px;
+    margin: 5px 0;
+    width: 100%;
+    @include themify($themes) {
+      color: themed(textCard);
+      background-color: themed(mainColor);
+      box-shadow: 0px 1px 1px 1px rgba(0, 0, 0, 0.25);
+    }
+  }
+
+  select {
+    width: 100%;
+    margin: 10px 30px;
+    padding: 10px 20px;
+    border-radius: 2px;
+    border: 0;
+    box-shadow: 0px 0px 2px 0px rgba(0, 0, 0, 0.25);
+  }
+
+  &__receita {
+    @include flex(center, space-between);
+    margin: 10px 0;
+    width: 100%;
+    flex-direction: row;
+
+    &__separar {
+      width: 48%;
+      border-radius: 3px;
+      @include flex(center, center);
+      padding: 10px 20px;
+      @include themify($themes) {
+        color: themed(textCard);
+        background-color: themed(mainColor);
+        box-shadow: 0px 1px 1px 1px rgba(0, 0, 0, 0.25);
+      }
+
+      &.active {
+        background-color: rgba(145, 34, 232, 0.25);
+      }
+
+      &:active,
+      &:focus {
+        transform: scale(0.95, 0.95);
+      }
+
+      &:hover {
+        background-color: linear-gradient();
+      }
+
+      &:first-child {
+        color: #3b9654;
+      }
+
+      &:last-child {
+        color: #fe3030;
+      }
+    }
+  }
+
+  button {
+    width: 100%;
+    padding: 15px;
+    font-size: 18px;
+    font-weight: 500;
+    border: 0;
+    @include themify($themes) {
+      color: themed(textCard);
+      background-color: themed(mainColor);
+      box-shadow: 0px 1px 1px 1px rgba(0, 0, 0, 0.25);
+    }
+
+    &:hover {
+    }
+
+    &:active {
+      transform: scale(0.95, 0.95);
+    }
+  }
+}
