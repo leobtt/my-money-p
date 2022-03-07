@@ -6,9 +6,7 @@ exports.somatoria = functions.database
   .ref('{uid}/movimentacoes/{dia}')
   .onWrite(async (change, context) => {
     // referência a coleção meses
-    const mesesRef = admin
-      .database()
-      .ref(context.params.uid + '/meses/' + context.params.dia)
+    const mesesRef = admin.database().ref(context.params.uid + '/meses/' + context.params.dia)
 
     // referenciando a coleção 'ultimasDatas'
     const ultimasDatas = admin
@@ -61,14 +59,50 @@ exports.somatoria = functions.database
     })
   })
 
+exports.resetarValor = functions.database
+  .ref('{uid}/movimentacoes/{dia}')
+  .onDelete(async (change, context) => {
+    const mesesRef = admin.database().ref(context.params.uid + '/meses/' + context.params.dia)
+
+    const ultimasDatas = admin
+      .database()
+      .ref(`${context.params.uid}/ultimasDatas/${context.params.dia}`)
+
+    ultimasDatas.transaction((currentValue) => {
+      return { ...currentValue, entradas: false, saidas: false, saldo: false }
+    })
+
+    return mesesRef.transaction((currentValue) => {
+      return {
+        ...currentValue,
+        entradas: 0,
+        saidas: 0,
+        saldo: 0,
+      }
+    })
+  })
+
+exports.excluirMes = functions.database
+  .ref('{uid}/meses/{dia}')
+  .onDelete(async (change, context) => {
+    const movimentacoesRef = admin
+      .database()
+      .ref(`${context.params.uid}/movimentacoes/${context.params.dia}`)
+
+    const ultimasDatas = admin
+      .database()
+      .ref(`${context.params.uid}/ultimasDatas/${context.params.dia}`)
+
+    ultimasDatas.remove()
+    movimentacoesRef.remove()
+  })
+
 exports.createUserDocument = functions.auth.user().onCreate(async (user) => {
   const date = new Date()
   const year = date.getFullYear()
   const month = (date.getMonth() + 1).toString().padStart(2, '0')
 
-  const userRef = admin
-    .database()
-    .ref(`${user.uid}/movimentacoes/${month}-${year}`)
+  const userRef = admin.database().ref(`${user.uid}/movimentacoes/${month}-${year}`)
   const snapshot = await userRef.get()
 
   if (!snapshot.exists()) {
@@ -82,9 +116,7 @@ exports.createUserDocument = functions.auth.user().onCreate(async (user) => {
     })
   }
 
-  const ultimasDatas = admin
-    .database()
-    .ref(`${user.uid}/ultimasDatas/${month}-${year}`)
+  const ultimasDatas = admin.database().ref(`${user.uid}/ultimasDatas/${month}-${year}`)
   const snapshot2 = await ultimasDatas.get()
 
   if (!snapshot2.exists()) {
