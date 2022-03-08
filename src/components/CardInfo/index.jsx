@@ -12,7 +12,7 @@ import { rewriteDateCard } from '../../utils/rewriteDateCard'
 const CardInfo = () => {
   const { date } = useParams()
   const [data, setData] = useState(null)
-  const lastDates = useGetData('/ultimasDatas')
+  const lastDates = useGetData(`/ultimasDatas/${date}`)
 
   useEffect(() => {
     const uid = localStorage.getItem('uid')

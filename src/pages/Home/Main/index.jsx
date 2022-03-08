@@ -5,7 +5,6 @@ import CardInfo from '../../../components/CardInfo'
 import TransactionCard from '../../../components/TransactionCard'
 
 import { fire } from '../../../services'
-import AlertMessage from '../../../components/AlertMessage'
 
 const Main = () => {
   const sair = () => {

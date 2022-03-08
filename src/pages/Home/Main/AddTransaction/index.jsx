@@ -8,8 +8,8 @@ const category = ['Compras', 'Alimentação', 'Lazer', 'Estudos', 'Locomoção',
 
 const AddTransaction = ({ close }) => {
   const { date } = useParams()
-  const { saveData, saveDate } = usePost()
-
+  const { saveData, saveDate, status } = usePost()
+  const [alert, setAlert] = useState(null)
   const [form, setForm] = useState({
     descricao: 'Compras',
     valor: null,
@@ -35,45 +35,48 @@ const AddTransaction = ({ close }) => {
   const handleSubmit = () => {
     close(false)
     const valor = form.valor.replace(/[,]/g, '.')
-
+    setAlert(true)
     saveData(date, { ...form, valor: parseFloat(valor) })
     saveDate(date, { receita: form.receita })
   }
 
   return (
-    <div className="form">
-      <Close className="closer" onClick={() => close(false)} />
+    <>
+      <div className="form">
+        <Close className="closer" onClick={() => close(false)} />
 
-      <h2>Adicionar Transação</h2>
+        <h2>Adicionar Transação</h2>
 
-      <input type="text" name="descricao" placeholder="Descrição" onChange={handleChange} />
-      <select name="categoria" onChange={handleChange}>
-        v
-        {category.map((item, index) => (
-          <option value={item} key={index}>
-            {item}
-          </option>
-        ))}
-      </select>
-      <input type="text" name="valor" placeholder="Valor" onChange={handleChange} />
-      <div className="form__receita">
-        <div
-          className={`form__receita__separar ${color.c1 ? 'active' : ''}`}
-          onClick={() => selectColor(true)}
-        >
-          <ArrowUpward />
+        <input type="text" name="descricao" placeholder="Descrição" onChange={handleChange} />
+        <select name="categoria" onChange={handleChange}>
+          v
+          {category.map((item, index) => (
+            <option value={item} key={index}>
+              {item}
+            </option>
+          ))}
+        </select>
+        <input type="text" name="valor" placeholder="Valor" onChange={handleChange} />
+        <div className="form__receita">
+          <div
+            className={`form__receita__separar ${color.c1 ? 'active' : ''}`}
+            onClick={() => selectColor(true)}
+          >
+            <ArrowUpward />
+          </div>
+          <div
+            className={`form__receita__separar ${color.c2 ? 'active' : ''}`}
+            onClick={() => selectColor(false)}
+          >
+            <ArrowDownward />
+          </div>
         </div>
-        <div
-          className={`form__receita__separar ${color.c2 ? 'active' : ''}`}
-          onClick={() => selectColor(false)}
-        >
-          <ArrowDownward />
-        </div>
+        <button type="button" onClick={handleSubmit}>
+          Adicionar
+        </button>
       </div>
-      <button type="button" onClick={handleSubmit}>
-        Adicionar
-      </button>
-    </div>
+      {alert && <AlertMessage message={status} alert={setAlert} />}
+    </>
   )
 }
 

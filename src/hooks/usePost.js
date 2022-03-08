@@ -17,14 +17,12 @@ const usePost = () => {
     if (!snapshot.exists()) {
       ref.set('vazio', (err) => {
         if (err) setStatus({ error: err.message })
-        else setStatus({ success: 'Data cadastrada' })
       })
     }
-    console.log(data)
     if (data !== undefined) {
-      return ref.push({ ...data, createdAt: new Date().getTime() }, (err) => {
+      setStatus({ success: 'Item cadastrado' })
+      return ref.push({ ...data, createdAt: parseInt(`-${new Date().getTime()}`) }, (err) => {
         if (err) setStatus({ error: err.message })
-        else setStatus({ success: 'Item cadastrado' })
       })
     }
   }
@@ -34,15 +32,22 @@ const usePost = () => {
 
     const timestamps = new Date().getTime()
 
-    //trocar por set ou achar um valor correspondente
     if (data.receita === true) {
-      return ref.push({ entradas: timestamps, saldo: timestamps })
+      ref.transaction((currentValue) => {
+        return { ...currentValue, saldo: timestamps, entradas: timestamps }
+      })
     } else if (data.receita === false) {
-      return ref.push({ saidas: timestamps, saldo: timestamps })
+      return ref.transaction((currentValue) => {
+        return {
+          ...currentValue,
+          saldo: timestamps,
+          saidas: timestamps,
+        }
+      })
     }
   }
 
-  return { saveData, saveDate, status }
+  return { saveData, saveDate, status: 'Transação cadastrada' }
 }
 
 export default usePost

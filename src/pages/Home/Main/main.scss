@@ -37,7 +37,7 @@
       margin: 3.2rem 0 0 1rem;
       padding: 30px;
       border-radius: 20px;
-      width: 100%;
+      width: 70%;
       @include themify($themes) {
         background-color: themed(mainColor);
         color: themed(textCard);

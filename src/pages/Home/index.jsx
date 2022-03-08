@@ -17,6 +17,7 @@ const Home = () => {
     <div className={`${globalTheme}`}>
       <Sidebar />
       <Outlet />
+
       {/* {user && <pre>{JSON.stringify(user.uid, null, 3)}</pre>}
       {data && <pre>{JSON.stringify(data, null, 3)}</pre>} */}
     </div>

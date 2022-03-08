@@ -1,24 +1,23 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { CheckCircle } from '@mui/icons-material'
 import './alertMessage.scss'
 
-const data = {
-  error: 'erro',
-  success: 'Item cadastrado',
-  active: true,
-}
+let timer = null
 
-const AlertMessage = ({ message, alert }) => {
-  setTimeout(() => {
-    alert(false)
-  }, 2500)
+const AlertMessage = ({ message, setAlert, alert }) => {
+  const [active, setActive] = useState(true)
+  console.log('message', message, '     alert', alert)
 
   return (
-    <div className="alertMessage active">
-      <CheckCircle style={{ fontSize: '25px', color: 'green' }} />
-      <span>{message}</span>
-      <div className="alertMessage__progressBar active"></div>
-    </div>
+    <>
+      {message && (
+        <div className={`alertMessage ${alert ? 'active' : ''}`}>
+          <CheckCircle style={{ fontSize: '25px', color: 'green' }} />
+          <span>{message}</span>
+          <div className="alertMessage__progressBar active"></div>
+        </div>
+      )}
+    </>
   )
 }
 

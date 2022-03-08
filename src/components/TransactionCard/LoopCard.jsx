@@ -7,10 +7,12 @@ import { useParams } from 'react-router-dom'
 import AlertMessage from '../AlertMessage'
 
 const LoopCard = ({ data }) => {
-  const [remove, status] = useDelete()
+  const { remove, status } = useDelete()
   const { date } = useParams()
   const [alert, setAlert] = useState(false)
-  const createdAt = new Date(data.value.createdAt)
+
+  const negativeDate = data.value.createdAt.toString().split('-')[1]
+  const createdAt = new Date(parseInt(negativeDate))
   const composition = `${createdAt.getDate().toString().padStart(2, '0')}/${(
     createdAt.getMonth() + 1
   )
@@ -18,10 +20,10 @@ const LoopCard = ({ data }) => {
     .padStart(2, '0')}/${createdAt.getFullYear().toString().substr(-2)}`
 
   const handleRemove = () => {
+    setAlert(false)
     remove(`/movimentacoes/${date}/${data.index}`)
     setAlert(true)
   }
-
   return (
     <>
       <div className="transaction">
@@ -40,7 +42,8 @@ const LoopCard = ({ data }) => {
           <DeleteForever className="transaction__date__icon" onClick={handleRemove} />
         </div>
       </div>
-      {alert && <AlertMessage message={status.success} alert={setAlert} />}
+      {/* arrumar alert message, don't show in the screen */}
+      {alert && <AlertMessage message={status.success} setAlert={setAlert} alert={alert} />}
     </>
   )
 }

@@ -8,11 +8,12 @@ const useDelete = () => {
     const ref = fire.database().ref(`${localStorage.getItem('uid')}${path}`)
     ref
       .remove()
-      .then((data) => setStatus({ success: 'Transação removida' }))
+      .then((data) => {
+        setStatus({ success: 'Transação removida' })
+      })
       .catch((err) => setStatus({ error: err.message }))
   }
 
-  return [remove, status]
+  return { remove, status }
 }
-
 export default useDelete
