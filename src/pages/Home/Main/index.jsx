@@ -5,6 +5,7 @@ import CardInfo from '../../../components/CardInfo'
 import TransactionCard from '../../../components/TransactionCard'
 
 import { fire } from '../../../services'
+import Graphics from './Graphics'
 
 const Main = () => {
   const sair = () => {
@@ -21,9 +22,10 @@ const Main = () => {
           <TransactionCard />
         </div>
         <div className="main__content__graphics">
-          <button type="button" onClick={sair} style={{ padding: '20px' }}>
+          {/* <button type="button" onClick={sair} style={{ padding: '20px' }}>
             Sair
-          </button>
+          </button> */}
+          <Graphics />
         </div>
       </div>
     </div>
