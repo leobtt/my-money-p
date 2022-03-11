@@ -1,41 +1,52 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+import { useParams } from 'react-router-dom'
 import './graphics.scss'
-import { Doughnut } from 'react-chartjs-2'
+import _ from 'lodash'
+import { data } from './chartData'
+import { Pie } from 'react-chartjs-2'
 import { Chart as ChartJS, ArcElement, Tooltip, Legend } from 'chart.js'
+
+import useGetData from '../../../../hooks/useGetData'
 
 ChartJS.register(ArcElement, Tooltip, Legend)
 
-export const data = {
-  labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-  datasets: [
-    {
-      label: '# of Votes',
-      data: [12, 19, 3, 5, 2, 3],
-      backgroundColor: [
-        'rgba(255, 99, 132, 0.2)',
-        'rgba(54, 162, 235, 0.2)',
-        'rgba(255, 206, 86, 0.2)',
-        'rgba(75, 192, 192, 0.2)',
-        'rgba(153, 102, 255, 0.2)',
-        'rgba(255, 159, 64, 0.2)',
-      ],
-      borderColor: [
-        'rgba(255, 99, 132, 1)',
-        'rgba(54, 162, 235, 1)',
-        'rgba(255, 206, 86, 1)',
-        'rgba(75, 192, 192, 1)',
-        'rgba(153, 102, 255, 1)',
-        'rgba(255, 159, 64, 1)',
-      ],
-      borderWidth: 1,
-    },
-  ],
-}
-
 const Graphics = () => {
+  const [chartData, setChartData] = useState(null)
+  const { date } = useParams()
+  const datafromapi = useGetData('/movimentacoes/' + date)
+
+  const loadData = (data) => {
+    const negativeFilter = data.filter((item) => item.receita === false)
+    const values = _.groupBy(negativeFilter, (values) => values.categoria)
+
+    const result = _.map(values, (value, key) => {
+      return [_.sumBy(values[key], (v) => v.valor)]
+    })
+
+    setChartData({ index: Object.keys(values), values: result })
+  }
+
+  useEffect(() => {
+    if (datafromapi) {
+      loadData(Object.values(datafromapi))
+    }
+  }, [datafromapi])
+
   return (
     <div>
-      <Doughnut data={data} />
+      {chartData && (
+        <Pie
+          data={data(chartData)}
+          options={{
+            plugins: {
+              title: {
+                display: true,
+                text: 'Grafico de despesas',
+              },
+            },
+          }}
+        />
+      )}
     </div>
   )
 }
