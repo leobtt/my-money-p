@@ -34,10 +34,12 @@
 
   &__theme {
     @include flex();
+    padding: 10px;
 
     &__logo {
       font-size: 1.3rem;
-      margin-left: 2rem;
+      margin: 0.5rem 0 0.5rem 2rem;
+
       padding: 1.3rem 4.5rem;
       border-radius: 50px;
       @include themify($themes) {

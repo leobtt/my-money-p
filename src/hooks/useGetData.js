@@ -8,7 +8,7 @@ const useGetData = (path) => {
   useEffect(() => {
     // pegando os dados da base de dados
 
-    const ref = fire.database().ref('MOXKeSewEvbL0cgPApNkCkLZAbV2' + path)
+    const ref = fire.database().ref(localStorage.getItem('uid') + path)
     ref.on('value', (snapshot) => {
       setData(snapshot.val())
     })

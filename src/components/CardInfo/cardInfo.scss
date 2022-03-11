@@ -13,7 +13,7 @@
   padding: 1.5rem 2rem 2rem 2rem;
   width: 100%;
   height: 210px;
-  margin: 0 0.5rem;
+  margin: 0.5rem 0.5rem;
 
   @include themify($themes) {
     background-color: themed(mainColor);

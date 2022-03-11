@@ -11,6 +11,7 @@ input[type='checkbox'].toggle {
     display: flex;
     align-items: center;
     cursor: pointer;
+    padding: 10px 5px;
   }
 
   &:checked + label {
@@ -41,8 +42,8 @@ input[type='checkbox'].toggle {
     justify-content: center;
     position: absolute;
 
-    top: 0.15rem;
-    left: 0.17rem;
+    top: 100;
+    left: 0.4rem;
     content: '\262A';
     font-size: 1.55rem;
     color: black;
@@ -58,7 +59,7 @@ input[type='checkbox'].toggle {
   &:checked + label::after {
     color: black;
     content: '\2600';
-    left: 1.6rem;
+    left: 1.9rem;
 
     transition: background-color 400ms ease, left 300ms ease;
 

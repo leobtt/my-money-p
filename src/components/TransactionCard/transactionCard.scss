@@ -1,7 +1,7 @@
 @use '../../scss/abstracts/' as *;
 
 .alignTitle {
-  margin: 40px 30px 0 20px;
+  margin: 20px 30px 0px 20px;
   @include flex(center, space-between);
   width: 99%;
   &__title {
@@ -11,6 +11,7 @@
   }
 
   .button {
+    margin: 10px 10px;
     padding: 10px 20px;
     border-radius: 10px;
     border: 0;
@@ -35,7 +36,7 @@
 .alignTransaction {
   display: block;
   width: 100%;
-  height: calc(100vh - 470px);
+  height: calc(100vh - 520px);
   overflow: auto;
   margin: 10px 2rem;
 

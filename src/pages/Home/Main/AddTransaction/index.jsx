@@ -4,7 +4,16 @@ import { ArrowDownward, ArrowUpward, Close } from '@mui/icons-material'
 import usePost from '../../../../hooks/usePost'
 import { useParams } from 'react-router-dom'
 
-const category = ['Compras', 'Alimentação', 'Lazer', 'Estudos', 'Locomoção', 'Salário', 'Outros']
+const category = [
+  'Salário',
+  'Compras',
+  'Saúde',
+  'Alimentação',
+  'Lazer',
+  'Locomoção',
+  'Estudos',
+  'Outros',
+]
 
 const AddTransaction = ({ close }) => {
   const { date } = useParams()
