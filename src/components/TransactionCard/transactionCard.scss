@@ -50,7 +50,7 @@
     border-radius: 10px;
     height: 80px;
     width: calc(100% - 20px);
-    padding: 2rem 4rem;
+    padding: 2rem 3rem;
 
     @include themify($themes) {
       background-color: themed(mainColor);
@@ -92,7 +92,7 @@
 
     &__category {
       @include flex(center, flex-start);
-      width: 170px;
+      width: 100px;
 
       span {
         margin-left: 1rem;
@@ -100,10 +100,10 @@
     }
     &__date {
       @include flex(center, center);
-      width: 80px;
+      width: 100px;
 
       span {
-        margin-right: 4rem;
+        margin-right: 0rem;
       }
 
       &__icon {
