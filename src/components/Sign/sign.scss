@@ -1,0 +1,29 @@
+@use '../../scss/abstracts/' as *;
+
+.sign {
+  height: 100vh;
+  width: 100%;
+  @include flex(center, center);
+  flex-direction: column;
+
+  @include themify($themes) {
+    background-color: themed(background);
+  }
+
+  h1 {
+    width: 350px;
+    text-align: center;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    position: relative;
+    font-size: 18px;
+    padding: 20px 0 30px 0;
+    box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.25);
+    letter-spacing: 0.1rem;
+
+    background-color: #6930b8;
+    @include themify($themes) {
+      color: themed(loginText);
+    }
+  }
+}

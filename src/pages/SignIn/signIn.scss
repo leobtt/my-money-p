@@ -1,0 +1,60 @@
+@use '../../scss/abstracts/' as *;
+
+form {
+  position: relative;
+  top: -20px;
+  width: 350px;
+  border-radius: 20px;
+  padding: 0px 40px;
+  box-shadow: 0px 0px 10px 1px rgba(0, 0, 0, 0.25);
+  @include themify($themes) {
+    background-color: themed(mainColor);
+    color: themed(textCard);
+  }
+
+  h2 {
+    font-size: 18px;
+    text-align: center;
+    font-weight: 400;
+    margin: 15px 0 30px 0;
+  }
+
+  & > button {
+    margin-top: 10px;
+    cursor: pointer;
+    width: 100%;
+    border-radius: 10px;
+    padding: 10px;
+    font-size: 25px;
+    font-weight: 400;
+    border: 0;
+    background: #591ab1;
+    @include themify($themes) {
+      color: themed(loginText);
+    }
+
+    &:hover {
+      background: #5c27a5;
+
+      & span {
+        font-size: 22px;
+      }
+    }
+
+    &:active {
+      transform: scale(0.99, 0.99);
+    }
+  }
+  .link {
+    display: inline-block;
+    width: 100%;
+    text-align: center;
+    font-weight: 300;
+    font-size: 15px;
+    margin: 20px 0;
+
+    &:hover {
+      color: #3b9654;
+    }
+  }
+}

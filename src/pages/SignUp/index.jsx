@@ -1,7 +1,9 @@
 import React, { useContext, useState } from 'react'
 import fire from '../../services/firebase-config'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { UserContext } from '../../context'
+import Sign from '../../components/Sign'
+import Input from '../../components/Input'
 
 const initialState = {
   name: '',
@@ -10,7 +12,6 @@ const initialState = {
 }
 
 const SingUp = () => {
-  const { user } = useContext(UserContext)
   const [form, setForm] = useState(initialState)
   const navigate = useNavigate()
   const handleChange = ({ target }) => {
@@ -22,9 +23,7 @@ const SingUp = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault()
-    const newUser = await fire
-      .auth()
-      .createUserWithEmailAndPassword(form.email, form.password)
+    const newUser = await fire.auth().createUserWithEmailAndPassword(form.email, form.password)
 
     newUser.user.updateProfile({ displayName: form.name })
 
@@ -32,30 +31,21 @@ const SingUp = () => {
   }
 
   return (
-    <div>
+    <Sign>
       <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          name="name"
-          onChange={handleChange}
-          placeholder="Apelido"
-        />
-        <input
-          type="text"
-          name="email"
-          onChange={handleChange}
-          placeholder="E-mail"
-        />
-        <input
-          type="password"
-          name="password"
-          onChange={handleChange}
-          placeholder="Senha"
-        />
-        <button type="submit">Criar usuário</button>
-        <pre>{JSON.stringify(form, null, 2)}</pre>
+        <h2>Cadastre-se</h2>
+        <Input type="text" name="name" onChange={handleChange} text="Nickname" />
+        <Input type="text" name="email" onChange={handleChange} text="Email" />
+        <Input type="password" name="password" onChange={handleChange} text="Senha" />
+        <button type="submit">
+          <span>Cadastrar</span>
+        </button>
+        <Link to="/entrar" className="link">
+          Logar
+        </Link>
       </form>
-    </div>
+      <pre>{JSON.stringify(form, null, 2)}</pre>
+    </Sign>
   )
 }
 

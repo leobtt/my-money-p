@@ -38,9 +38,8 @@ const LoopCard = ({ data }) => {
         </div>
         <div className="transaction__date">
           <span>{composition}</span>
-
-          <DeleteForever className="transaction__date__icon" onClick={handleRemove} />
         </div>
+        <DeleteForever className="transaction__date__icon" onClick={handleRemove} />
       </div>
       {/* arrumar alert message, don't show in the screen */}
       {alert && <AlertMessage message={status.success} setAlert={setAlert} alert={alert} />}

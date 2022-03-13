@@ -36,7 +36,7 @@
 .alignTransaction {
   display: block;
   width: 100%;
-  height: calc(100vh - 520px);
+  height: calc(100vh - 570px);
   overflow: auto;
   margin: 10px 2rem;
 
@@ -92,7 +92,7 @@
 
     &__category {
       @include flex(center, flex-start);
-      width: 100px;
+      width: 115px;
 
       span {
         margin-left: 1rem;

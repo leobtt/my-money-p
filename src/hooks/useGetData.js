@@ -15,7 +15,7 @@ const useGetData = (path) => {
     return () => {
       ref.off()
     }
-  }, [])
+  }, [path])
   return data
 }
 

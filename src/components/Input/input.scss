@@ -1,0 +1,38 @@
+@use '../../scss/abstracts/' as *;
+
+.container {
+  position: relative;
+
+  &__input {
+    margin: 15px 0;
+    border-radius: 10px;
+    padding: 15px 20px;
+    border: 2px solid #591ab1;
+    width: 100%;
+    letter-spacing: 0.1rem;
+    @include themify($themes) {
+      background-color: themed(mainColor);
+      color: themed(textCard);
+    }
+
+    &:focus {
+      outline: unset;
+      @include themify($themes) {
+        border-color: #3b9654;
+        background-color: themed(mainColor);
+      }
+    }
+  }
+
+  span {
+    position: absolute;
+    top: 5px;
+    left: 15px;
+    padding: 0 5px;
+
+    @include themify($themes) {
+      color: #3b9654;
+      background-color: themed(mainColor);
+    }
+  }
+}

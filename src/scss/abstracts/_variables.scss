@@ -2,38 +2,20 @@ $themes: (
   light: (
     mainColor: #f8f8f8,
     background: #e9e9e9,
-    /*  linear-gradient(
-        to top left,
-        #835252 49.85%,
-        #f8f8f8 49.85% 50%,
-        #747989 50%
-      ), */
-      button: #747989,
+    button: #747989,
     buttonText: #835252,
     text: #27242c,
     textCard: #27242c,
-    receitaHover: #2d938e,
-    despesaHover: #592424,
-    saldoHover: #591ab1,
-    iconSaldoHover: #fdb64c,
+    loginText: white,
   ),
   dark: (
     mainColor: #1e1e1e,
     background: #161616,
-    /* linear-gradient(
-        to top left,
-        #4a2727 49.85%,
-        #1c1e1f 49.85% 50%,
-        #262a2b 50%
-      ), */
-      button: #262a2b,
+    button: #262a2b,
     buttonText: #5c3131,
     text: #ffffff,
     textCard: #c0bfbf,
-    receitaHover: #273432,
-    despesaHover: #592424,
-    saldoHover: #591ab1,
-    iconSaldoHover: #fdb64c,
+    loginText: #c0bfbf,
   ),
 );
 

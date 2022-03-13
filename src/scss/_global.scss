@@ -5,17 +5,19 @@
 * {
   margin: 0;
   padding: 0;
-  overflow: hidden;
   box-sizing: border-box;
   @include themify($themes) {
     transition: background 10ms ease-in-out, color 10ms ease-in-out;
   }
 }
 
-body {
-  overflow: hidden;
+html,
+body,
+#root {
+  position: absolute;
+  top: 0;
   font-family: 'Outfit', sans-serif;
-  height: 100vh;
+  height: 100%;
   width: 100%;
 }
 
