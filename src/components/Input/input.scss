@@ -3,7 +3,7 @@
 .container {
   position: relative;
 
-  &__input {
+  input {
     margin: 15px 0;
     border-radius: 10px;
     padding: 15px 20px;
@@ -22,6 +22,20 @@
         background-color: themed(mainColor);
       }
     }
+
+    &:invalid ~ p {
+      display: block;
+    }
+  }
+
+  p {
+    color: rgb(174, 32, 32);
+    font-size: 13px;
+    position: absolute;
+    top: -3px;
+    right: 5px;
+    z-index: 999;
+    display: none;
   }
 
   span {

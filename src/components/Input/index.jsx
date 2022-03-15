@@ -1,12 +1,21 @@
 import React from 'react'
 import './input.scss'
 
-const Input = ({ text, name, handleChange, type }) => {
+const Input = ({ label, name, handleChange, type, pattern, errorField }) => {
   return (
     <>
       <div className="container">
-        <span>{text}</span>
-        <input type={type} name={name} className="container__input" onChange={handleChange} />
+        <span>{label}</span>
+        <input
+          type={type}
+          name={name}
+          className="container__input"
+          onChange={handleChange}
+          autoComplete="nope"
+          pattern={pattern}
+          onInvalid={(e) => e.preventDefault()}
+        />
+        <p>{errorField}</p>
       </div>
     </>
   )
