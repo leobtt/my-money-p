@@ -7,40 +7,73 @@ import Sign from '../../components/Sign'
 
 const SignIn = () => {
   const [form, setForm] = useState({ email: '', password: '' })
+  const [errorLogin, setErrorLogin] = useState('')
   const navigate = useNavigate()
-
-  const date = `${(new Date().getMonth() + 1)
-    .toString()
-    .padStart(2, '0')}-${new Date().getFullYear()}`
 
   /* if (user) {
     return <Navigate replace to={`/${date}`} />
   } */
 
   const handleChange = (evt) => {
+    evt.preventDefault()
     setForm({
       ...form,
       [evt.target.name]: evt.target.value,
     })
   }
 
-  const handleSubmit = async () => {
-    const login = await fire.auth().signInWithEmailAndPassword(form.email, form.password)
-    console.log('login', login)
-    localStorage.setItem('uid', login.user.uid)
-    navigate(`/`)
+  const handleSubmit = async (e) => {
+    e.preventDefault()
+
+    try {
+      const login = await fire.auth().signInWithEmailAndPassword(form.email, form.password)
+
+      localStorage.setItem('uid', login.user.uid)
+
+      /* Buscando a data para redirecionamento de rota */
+      const searchNavigate = await fire
+        .database()
+        .ref(`${login.user.uid}/movimentacoes`)
+        .limitToFirst(1)
+      searchNavigate.on('value', (snapshot) => {
+        navigate(`/${Object.keys(snapshot.val())[0]}`)
+      })
+    } catch (err) {
+      setErrorLogin('Email ou senha inválidos')
+    }
   }
 
+  const inputs = [
+    {
+      name: 'email',
+      type: 'text',
+      label: 'E-mail',
+      pattern: '^[a-zA-z0-9.]+[@][a-z0-9]+[.][a-z]+$',
+      errorField: 'Email deve ser válido',
+      handleChange,
+    },
+    {
+      name: 'password',
+      type: 'password',
+      label: 'Senha',
+      pattern: '^[a-zA-z0-9]{6,}$',
+      errorField: 'Mínimo de 6 caracteres',
+      handleChange,
+    },
+  ]
   return (
     <Sign>
-      <form>
+      <form onSubmit={handleSubmit}>
         <h2>Login</h2>
-        <Input text="E-mail" name="email" handleChange={handleChange} type="text" />
-        <Input text="Senha" name="password" handleChange={handleChange} type="password" />
+        <div className="errorLogin">{errorLogin}</div>
+        {inputs.map((input, index) => (
+          <Input key={index} {...input} errorLogin={errorLogin} />
+        ))}
 
-        <button type="button" onClick={handleSubmit}>
+        <button>
           <span>Entrar</span>
         </button>
+
         <Link to="/cadastrar" className="link">
           Cadastre-se
         </Link>
