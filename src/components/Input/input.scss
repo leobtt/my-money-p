@@ -23,7 +23,7 @@
       }
     }
 
-    &:invalid ~ p {
+    &:invalid[focused='true'] ~ p {
       display: block;
     }
   }
@@ -43,6 +43,7 @@
     top: 5px;
     left: 15px;
     padding: 0 5px;
+    font-size: 15px;
 
     @include themify($themes) {
       color: #3b9654;

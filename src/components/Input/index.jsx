@@ -1,7 +1,9 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './input.scss'
 
 const Input = ({ label, name, handleChange, type, pattern, errorField }) => {
+  const [focused, setFocused] = useState(false)
+
   return (
     <>
       <div className="container">
@@ -14,6 +16,9 @@ const Input = ({ label, name, handleChange, type, pattern, errorField }) => {
           autoComplete="nope"
           pattern={pattern}
           onInvalid={(e) => e.preventDefault()}
+          onBlur={() => setFocused(true)}
+          focused={focused.toString()}
+          required
         />
         <p>{errorField}</p>
       </div>
