@@ -22,43 +22,40 @@ const AddTransaction = ({ close }) => {
   const [form, setForm] = useState({
     descricao: 'Compras',
     valor: null,
-    categoria: '',
+    categoria: 'Salário',
     receita: null,
   })
-  const [color, setColor] = useState({ c1: false, c2: false })
 
   const handleChange = ({ target }) => {
     const { name, value } = target
+
     setForm({ ...form, [name]: value })
+    console.log(form)
   }
 
-  const selectColor = (boolean) => {
-    setForm({ ...form, receita: boolean })
-    if (boolean) {
-      setColor({ c1: true, c2: false })
-    } else {
-      setColor({ c1: false, c2: true })
-    }
-  }
-
-  const handleSubmit = () => {
+  const handleSubmit = (e) => {
+    e.preventDefault()
     close(false)
     const valor = form.valor.replace(/[,]/g, '.')
     setAlert(true)
-    saveData(date, { ...form, valor: parseFloat(valor) })
-    saveDate(date, { receita: form.receita })
+    saveData(date, {
+      ...form,
+      valor: parseFloat(valor),
+      receita: form.receita == 'true' ? true : false,
+    })
+    saveDate(date, { receita: form.receita == 'true' ? true : false })
+    console.log(status)
   }
 
   return (
     <>
-      <div className="form">
+      <form className="form" onSubmit={handleSubmit}>
         <Close className="closer" onClick={() => close(false)} />
 
         <h2>Adicionar Transação</h2>
-
         <input type="text" name="descricao" placeholder="Descrição" onChange={handleChange} />
         <select name="categoria" onChange={handleChange}>
-          v
+          <option disabled>Categorias...</option>v
           {category.map((item, index) => (
             <option value={item} key={index}>
               {item}
@@ -66,24 +63,30 @@ const AddTransaction = ({ close }) => {
           ))}
         </select>
         <input type="text" name="valor" placeholder="Valor" onChange={handleChange} />
+
         <div className="form__receita">
-          <div
-            className={`form__receita__separar ${color.c1 ? 'active' : ''}`}
-            onClick={() => selectColor(true)}
-          >
-            <ArrowUpward />
+          <div style={{ width: '100%' }}>
+            <input type="radio" id="arrowUp" name="receita" value={true} onChange={handleChange} />
+            <label htmlFor="arrowUp">
+              <ArrowUpward style={{ color: '#3b9654' }} />
+            </label>
           </div>
-          <div
-            className={`form__receita__separar ${color.c2 ? 'active' : ''}`}
-            onClick={() => selectColor(false)}
-          >
-            <ArrowDownward />
+          <div>
+            <input
+              type="radio"
+              id="arrowDown"
+              name="receita"
+              value="false"
+              onChange={handleChange}
+            />
+            <label htmlFor="arrowDown">
+              <ArrowDownward style={{ color: '#fe3030' }} />
+            </label>
           </div>
         </div>
-        <button type="button" onClick={handleSubmit}>
-          Adicionar
-        </button>
-      </div>
+
+        <button type="submit">Adicionar</button>
+      </form>
       {alert && <AlertMessage message={status} alert={setAlert} />}
     </>
   )
