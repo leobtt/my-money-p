@@ -36,6 +36,23 @@
     background-color: themed(mainColor);
   }
 
+  &__close {
+    font-size: 40px;
+    font-weight: 500;
+    display: none;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    @include mobile {
+      display: flex;
+    }
+
+    &:hover {
+      cursor: pointer;
+      color: #9122e8;
+    }
+  }
+
   &__menu {
     @include flex(flex-start, flex-start);
     position: relative;
@@ -47,7 +64,7 @@
     direction: rtl;
 
     @include mobile {
-      margin: 0;
+      align-items: center;
     }
 
     &__link {
@@ -65,6 +82,12 @@
           transition: background 150ms;
           box-shadow: 10px 5px 5px 0px themed(buttonText);
         }
+
+        @include mobile {
+          border-top-right-radius: 20px;
+          border-bottom-right-radius: 20px;
+          padding: 15px 0;
+        }
       }
 
       &.active {
@@ -75,6 +98,12 @@
           background-color: themed(background);
           transition: background 350ms ease-in-out;
           box-shadow: 10px 5px 5px 2px themed(buttonText);
+        }
+
+        @include mobile {
+          border-top-right-radius: 20px;
+          border-bottom-right-radius: 20px;
+          padding: 15px 0;
         }
       }
     }

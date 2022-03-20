@@ -22,11 +22,9 @@ body,
   @include themify($themes) {
     background-color: themed(mainColor);
   }
-}
 
-body .theme-dark {
-  @include themify($themes) {
-    background-color: themed(mainColor);
+  &::-webkit-scrollbar {
+    width: 0px;
   }
 }
 

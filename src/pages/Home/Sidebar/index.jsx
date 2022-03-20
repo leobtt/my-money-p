@@ -6,6 +6,7 @@ import { useEffect } from 'react/cjs/react.development'
 import { rewriteDate } from '../../../utils/rewriteDate'
 import './sidebar.scss'
 import { UserContext } from '../../../context'
+import { CloseRounded } from '@mui/icons-material'
 
 const ShowMonths = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12']
 
@@ -13,7 +14,7 @@ const Sidebar = () => {
   const [activeIndex, setActiveIndex] = useState()
   const { saveData } = usePost()
   const {
-    menu: { openMenu },
+    menu: { openMenu, setOpenMenu },
   } = useContext(UserContext)
   const navigate = useNavigate()
 
@@ -32,11 +33,16 @@ const Sidebar = () => {
 
     saveData(date, undefined)
     navigate(`/${date}`)
+    setOpenMenu(false)
   }
 
   return (
     <div className={`sidebar ${openMenu ? 'open' : ''}`}>
       <h2>LISTA DE MESES</h2>
+      <div className="sidebar__close">
+        <CloseRounded style={{ fontSize: '50px' }} onClick={() => setOpenMenu(false)} />
+      </div>
+
       <div className="sidebar__menu">
         {data &&
           Object.keys(data).map((month, index) => {

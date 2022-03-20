@@ -10,27 +10,9 @@ import {
 } from 'chart.js'
 import { data } from './chartData'
 import useGetData from '../../../../../hooks/useGetData'
-import { useParams } from 'react-router-dom'
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, ArcElement)
 
-const schemas = {
-  '02-2022': {
-    entradas: 200,
-    saidas: 500,
-    saldo: -300,
-  },
-  '03-2022': {
-    entradas: 900,
-    saidas: 500,
-    saldo: 400,
-  },
-  '04-2022': {
-    entradas: 1000,
-    saidas: 700,
-    saldo: 300,
-  },
-}
 const arrayMonth = [
   'Error',
   'Jan',
@@ -58,6 +40,7 @@ const LineChart = () => {
   })
 
   useEffect(() => {
+    /* Formatando a data '02-2022' to Fev/22 */
     if (schema) {
       const month = Object.keys(schema).map((item) => {
         const formatMonth = parseInt(item.split('-')[0])
@@ -65,6 +48,7 @@ const LineChart = () => {
         return [`${arrayMonth[formatMonth]}/${year}`]
       })
 
+      /* Pegando os valores separadamente */
       const entradas = []
       const saidas = []
       const saldoTotal = []
@@ -90,7 +74,7 @@ const LineChart = () => {
 
   return (
     <div>
-      <h3 style={{ margin: '10px 0 0 130px' }}>Receita e depesas dos mesês</h3>
+      <h3>Receita e depesas dos mesês</h3>
       <Line
         data={data(date, receitas, despesas, saldo)}
         width={500}

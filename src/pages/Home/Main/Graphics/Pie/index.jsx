@@ -33,7 +33,7 @@ const PieChart = () => {
 
   return (
     <div>
-      <h3 style={{ margin: '0 0 20px 55px' }}>Gráfico de despesas</h3>
+      <h3>Gráfico de despesas</h3>
       {chartData && <Pie data={data(chartData)} width={250} height={250} />}
     </div>
   )
