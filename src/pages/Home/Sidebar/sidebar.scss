@@ -12,9 +12,23 @@
   top: 0;
   left: 0;
   overflow: hidden;
+  transition: all 0.3s;
 
   @include tablet {
     left: -100%;
+    transition: all 0.3s;
+
+    &.open {
+      transition: all 0.3s;
+      left: 0;
+    }
+  }
+
+  @include mobile {
+    &.open {
+      transition: all 0.3s;
+      width: 100%;
+    }
   }
 
   @include themify($themes) {
@@ -31,6 +45,10 @@
     overflow-x: hidden;
     overflow-y: auto;
     direction: rtl;
+
+    @include mobile {
+      margin: 0;
+    }
 
     &__link {
       width: 210px;

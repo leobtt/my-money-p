@@ -4,6 +4,10 @@
   @include flex();
   margin-top: 3rem;
   width: 100%;
+
+  @include mobile {
+    flex-direction: column;
+  }
 }
 
 .card {
@@ -52,5 +56,12 @@
       font-weight: 200;
       margin-left: 1px;
     }
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .main.open .alignLine {
+    transition: all 0.3s ease-in-out;
+    flex-direction: column;
   }
 }

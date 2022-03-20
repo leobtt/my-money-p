@@ -1,13 +1,23 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import './header.scss'
 import CheckboxTheme from '../../../../components/CheckboxTheme'
-import DashboardIcon from '@mui/icons-material/Dashboard'
+import { Dashboard, Menu } from '@mui/icons-material'
+import { UserContext } from '../../../../context'
 
 const index = () => {
+  const {
+    menu: { setOpenMenu, openMenu },
+  } = useContext(UserContext)
+
   return (
     <header className="top">
       <div className="top__dash">
-        <DashboardIcon className="top__dash__icon" />
+        <div className="top__dash__icon">
+          <Dashboard className="top__dash__icon" />
+        </div>
+        <div className="top__dash__menu">
+          <Menu style={{ fontSize: '3.4rem' }} onClick={() => setOpenMenu(!openMenu)} />
+        </div>
         <div className="top__dash__info">
           <h2>Dashboard</h2>
           <span>Informações do mês</span>

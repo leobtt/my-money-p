@@ -25,11 +25,11 @@ exports.somatoria = functions.database
     let saldo = 0
 
     Object.keys(movimentacoes).forEach((m) => {
-      if (movimentacoes[m].valor !== 0 && movimentacoes[m].receita === true) {
+      if (/* movimentacoes[m].valor !== 0 &&  */ movimentacoes[m].receita === true) {
         saldo += parseFloat(movimentacoes[m].valor.toFixed(2))
         entradas += parseFloat(movimentacoes[m].valor.toFixed(2))
       }
-      if (movimentacoes[m].valor !== 0 && movimentacoes[m].receita === false) {
+      if (/* movimentacoes[m].valor !== 0 &&  */ movimentacoes[m].receita === false) {
         saidas -= parseFloat(movimentacoes[m].valor.toFixed(2))
         saldo -= parseFloat(movimentacoes[m].valor.toFixed(2))
       }
@@ -59,7 +59,7 @@ exports.somatoria = functions.database
     })
   })
 
-exports.resetarValor = functions.database
+/* exports.resetarValor = functions.database
   .ref('{uid}/movimentacoes/{dia}')
   .onDelete(async (change, context) => {
     const mesesRef = admin.database().ref(context.params.uid + '/meses/' + context.params.dia)
@@ -80,9 +80,9 @@ exports.resetarValor = functions.database
         saldo: 0,
       }
     })
-  })
+  }) */
 
-exports.excluirMes = functions.database
+/* exports.excluirMes = functions.database
   .ref('{uid}/meses/{dia}')
   .onDelete(async (change, context) => {
     const movimentacoesRef = admin
@@ -95,7 +95,7 @@ exports.excluirMes = functions.database
 
     ultimasDatas.remove()
     movimentacoesRef.remove()
-  })
+  }) */
 
 exports.createUserDocument = functions.auth.user().onCreate(async (user) => {
   const date = new Date()

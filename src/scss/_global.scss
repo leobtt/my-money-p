@@ -19,6 +19,15 @@ body,
   font-family: 'Outfit', sans-serif;
   height: 100%;
   width: 100%;
+  @include themify($themes) {
+    background-color: themed(mainColor);
+  }
+}
+
+body .theme-dark {
+  @include themify($themes) {
+    background-color: themed(mainColor);
+  }
 }
 
 a {

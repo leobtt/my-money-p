@@ -1,16 +1,20 @@
-import React, { useState, useRef } from 'react'
+import React, { useState, useRef, useContext } from 'react'
 import useGetData from '../../../hooks/useGetData'
 import usePost from '../../../hooks/usePost'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { useEffect } from 'react/cjs/react.development'
 import { rewriteDate } from '../../../utils/rewriteDate'
 import './sidebar.scss'
+import { UserContext } from '../../../context'
 
 const ShowMonths = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12']
 
 const Sidebar = () => {
   const [activeIndex, setActiveIndex] = useState()
   const { saveData } = usePost()
+  const {
+    menu: { openMenu },
+  } = useContext(UserContext)
   const navigate = useNavigate()
 
   const month = useRef()
@@ -31,7 +35,7 @@ const Sidebar = () => {
   }
 
   return (
-    <div className="sidebar">
+    <div className={`sidebar ${openMenu ? 'open' : ''}`}>
       <h2>LISTA DE MESES</h2>
       <div className="sidebar__menu">
         {data &&

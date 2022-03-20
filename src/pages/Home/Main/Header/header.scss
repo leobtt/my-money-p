@@ -6,14 +6,36 @@
   padding: 0 1rem;
 
   &__dash {
-    @include flex();
+    @include flex(center, center);
 
     &__icon {
+      @include flex(center);
       @include themify($themes) {
         color: themed(text);
         font-size: 3.4rem;
       }
+      @include tablet {
+        display: none;
+      }
     }
+
+    &__menu {
+      @include flex(center);
+      cursor: pointer;
+      font-size: 3.4rem;
+      display: none;
+
+      @include tablet {
+        display: flex;
+      }
+
+      &:hover {
+        @include themify($themes) {
+          color: #7421b5;
+        }
+      }
+    }
+
     &__info {
       @include flex(flex-start, center);
       flex-direction: column;
@@ -38,9 +60,13 @@
 
     &__logo {
       font-size: 1.3rem;
-      margin: 0.5rem 0 0.5rem 2rem;
+      margin: 0.49rem 0 0.49rem 2rem;
 
-      padding: 1.3rem 4.5rem;
+      @include tablet {
+        display: none;
+      }
+
+      padding: 1.3rem 3rem;
       border-radius: 50px;
       @include themify($themes) {
         color: themed(textCard);

@@ -23,17 +23,20 @@ const useGetUser = () => {
 
 const Context = (props) => {
   const [theme, setTheme] = useState('theme-dark')
+  const [openMenu, setOpenMenu] = useState(false)
   const user = useGetUser()
 
   const value = {
     user,
     globalTheme: theme,
     setGlobalTheme: setTheme,
+    menu: {
+      openMenu,
+      setOpenMenu,
+    },
   }
 
-  return (
-    <UserContext.Provider value={value}>{props.children}</UserContext.Provider>
-  )
+  return <UserContext.Provider value={value}>{props.children}</UserContext.Provider>
 }
 
 export default Context

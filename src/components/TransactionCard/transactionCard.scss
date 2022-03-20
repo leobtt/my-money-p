@@ -40,6 +40,9 @@
   overflow: auto;
   margin: 10px 2rem;
 
+  @include tablet {
+    height: 100%;
+  }
   &::-webkit-scrollbar {
     width: 0rem;
   }
@@ -51,6 +54,10 @@
     height: 80px;
     width: calc(100% - 20px);
     padding: 2rem 3rem;
+
+    @include tablet {
+      padding: 1rem 1rem;
+    }
 
     @include themify($themes) {
       background-color: themed(mainColor);

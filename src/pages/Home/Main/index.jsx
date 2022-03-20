@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import './main.scss'
 import Header from './Header'
 import CardInfo from '../../../components/CardInfo'
@@ -6,15 +6,20 @@ import TransactionCard from '../../../components/TransactionCard'
 
 import { fire } from '../../../services'
 import Graphics from './Graphics'
+import { UserContext } from '../../../context'
 
 const Main = () => {
+  const {
+    menu: { openMenu },
+  } = useContext(UserContext)
+
   const sair = () => {
     fire.auth().signOut()
     localStorage.removeItem('uid')
   }
 
   return (
-    <div className="main">
+    <div className={`main ${openMenu ? 'open' : ''}`}>
       <Header />
       <div className="main__content">
         <div className="main__content__transactions">
