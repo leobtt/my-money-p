@@ -6,20 +6,16 @@ import Sidebar from './Sidebar'
 import Main from './Main'
 
 const Home = () => {
-  const { user, globalTheme } = useContext(UserContext)
-  const data = useGetData('')
+  const { globalTheme } = useContext(UserContext)
 
-  /*  if (!user || user.length <= 1) {
+  if (localStorage.getItem('uid') === null) {
     return <Navigate replace to="/entrar" />
-  } */
+  }
 
   return (
     <div className={`${globalTheme}`}>
       <Sidebar />
       <Outlet />
-
-      {/* {user && <pre>{JSON.stringify(user.uid, null, 3)}</pre>}
-      {data && <pre>{JSON.stringify(data, null, 3)}</pre>} */}
     </div>
   )
 }

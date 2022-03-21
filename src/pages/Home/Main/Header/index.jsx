@@ -1,13 +1,22 @@
 import React, { useContext } from 'react'
 import './header.scss'
 import CheckboxTheme from '../../../../components/CheckboxTheme'
-import { Dashboard, Menu } from '@mui/icons-material'
+import { Dashboard, Menu, Close, Logout } from '@mui/icons-material'
 import { UserContext } from '../../../../context'
+import { fire } from '../../../../services'
+import { useNavigate } from 'react-router-dom'
 
 const index = () => {
   const {
     menu: { setOpenMenu, openMenu },
   } = useContext(UserContext)
+  const navigate = useNavigate()
+
+  const logout = () => {
+    fire.auth().signOut()
+    localStorage.removeItem('uid')
+    navigate('/entrar')
+  }
 
   return (
     <header className="top">
@@ -16,7 +25,13 @@ const index = () => {
           <Dashboard className="top__dash__icon" />
         </div>
         <div className="top__dash__menu">
-          <Menu style={{ fontSize: '3.4rem' }} onClick={() => setOpenMenu(!openMenu)} />
+          {!openMenu && (
+            <Menu style={{ fontSize: '3.4rem' }} onClick={() => setOpenMenu(!openMenu)} />
+          )}
+
+          {openMenu && (
+            <Close style={{ fontSize: '3.4rem' }} onClick={() => setOpenMenu(!openMenu)} />
+          )}
         </div>
         <div className="top__dash__info">
           <h2>Dashboard</h2>
@@ -26,7 +41,10 @@ const index = () => {
 
       <div className="top__theme">
         <CheckboxTheme />
-        <div className="top__theme__logo">My Money</div>
+        <div className="top__theme__logo">MyMoney</div>
+        <div className="logout" onClick={logout}>
+          <Logout />
+        </div>
       </div>
     </header>
   )

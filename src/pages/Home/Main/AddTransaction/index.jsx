@@ -53,7 +53,13 @@ const AddTransaction = ({ close }) => {
         <Close className="closer" onClick={() => close(false)} />
 
         <h2>Adicionar Transação</h2>
-        <input type="text" name="descricao" placeholder="Descrição" onChange={handleChange} />
+        <input
+          type="text"
+          name="descricao"
+          placeholder="Descrição"
+          onChange={handleChange}
+          autoComplete="nope"
+        />
         <select name="categoria" onChange={handleChange}>
           <option disabled>Categorias...</option>v
           {category.map((item, index) => (
@@ -62,7 +68,13 @@ const AddTransaction = ({ close }) => {
             </option>
           ))}
         </select>
-        <input type="text" name="valor" placeholder="Valor" onChange={handleChange} />
+        <input
+          type="text"
+          name="valor"
+          placeholder="Valor"
+          onChange={handleChange}
+          autoComplete="nope"
+        />
 
         <div className="form__receita">
           <div style={{ width: '100%' }}>

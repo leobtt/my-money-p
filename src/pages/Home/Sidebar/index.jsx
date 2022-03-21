@@ -6,7 +6,7 @@ import { useEffect } from 'react/cjs/react.development'
 import { rewriteDate } from '../../../utils/rewriteDate'
 import './sidebar.scss'
 import { UserContext } from '../../../context'
-import { CloseRounded } from '@mui/icons-material'
+import { CloseRounded, Logout } from '@mui/icons-material'
 
 const ShowMonths = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12']
 
@@ -40,7 +40,7 @@ const Sidebar = () => {
     <div className={`sidebar ${openMenu ? 'open' : ''}`}>
       <h2>LISTA DE MESES</h2>
       <div className="sidebar__close">
-        <CloseRounded style={{ fontSize: '50px' }} onClick={() => setOpenMenu(false)} />
+        <CloseRounded style={{ fontSize: '45px' }} onClick={() => setOpenMenu(false)} />
       </div>
 
       <div className="sidebar__menu">

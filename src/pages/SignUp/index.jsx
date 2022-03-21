@@ -82,7 +82,6 @@ const SingUp = () => {
           Logar
         </Link>
       </form>
-      <pre>{JSON.stringify(form, null, 2)}</pre>
     </Sign>
   )
 }

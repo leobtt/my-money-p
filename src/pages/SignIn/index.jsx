@@ -78,7 +78,6 @@ const SignIn = () => {
           Cadastre-se
         </Link>
       </form>
-      <pre>{JSON.stringify(form)}</pre>
     </Sign>
   )
 }

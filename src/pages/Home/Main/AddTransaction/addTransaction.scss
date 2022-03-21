@@ -7,6 +7,12 @@
   border-radius: 10px;
   position: relative;
 
+  @include mobile {
+    position: fixed;
+    top: 0;
+    left: 0;
+  }
+
   @include themify($themes) {
     background-color: themed(mainColor);
     box-shadow: 0px 0px 10px 0px rgba(145, 34, 232, 0.25);

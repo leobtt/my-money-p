@@ -28,6 +28,13 @@ body,
   }
 }
 
+@media screen and (min-width: 1366px) {
+  .theme-dark,
+  .theme-light {
+    height: 100%;
+  }
+}
+
 a {
   text-decoration: none;
   color: unset;
