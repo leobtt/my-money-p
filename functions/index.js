@@ -59,7 +59,7 @@ exports.somatoria = functions.database
     })
   })
 
-/* exports.resetarValor = functions.database
+exports.resetarValor = functions.database
   .ref('{uid}/movimentacoes/{dia}')
   .onDelete(async (change, context) => {
     const mesesRef = admin.database().ref(context.params.uid + '/meses/' + context.params.dia)
@@ -80,7 +80,7 @@ exports.somatoria = functions.database
         saldo: 0,
       }
     })
-  }) */
+  })
 
 /* exports.excluirMes = functions.database
   .ref('{uid}/meses/{dia}')
