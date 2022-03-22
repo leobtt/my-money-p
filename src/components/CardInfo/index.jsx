@@ -6,6 +6,7 @@ import { useParams } from 'react-router-dom'
 
 import { fire } from '../../services'
 import { rewriteDateCard } from '../../utils/rewriteDateCard'
+import Loading from './Loading.jsx'
 
 /* TESTE */
 
@@ -43,6 +44,13 @@ const CardInfo = () => {
 
   return (
     <div className="alignLine">
+      {!data && (
+        <>
+          <Loading />
+          <Loading />
+          <Loading />
+        </>
+      )}
       {data &&
         Object.keys(data).map((item, index) => {
           const checkNegativeValue = data[item].toString().startsWith('-')
