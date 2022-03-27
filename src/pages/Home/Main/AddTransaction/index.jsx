@@ -3,7 +3,10 @@ import './addTransaction.scss'
 import { ArrowDownward, ArrowUpward, Close } from '@mui/icons-material'
 import usePost from '../../../../hooks/usePost'
 import { useParams } from 'react-router-dom'
-import { border } from '@mui/system'
+import { moneyMask } from '../../../../utils/moneyMask'
+import ReactDom from 'react-dom'
+
+import AlertMessage from '../../../../components/AlertMessage'
 
 const category = [
   'Salário',
@@ -19,8 +22,6 @@ const category = [
 const AddTransaction = ({ close }) => {
   const { date } = useParams()
   const { saveData, saveDate, status } = usePost()
-  const [alert, setAlert] = useState(null)
-  const [focused, setFocused] = useState(false)
   const [submit, setSubmit] = useState(false)
   const [form, setForm] = useState({
     descricao: 'Compras',
@@ -38,14 +39,12 @@ const AddTransaction = ({ close }) => {
     }
 
     setForm({ ...form, [name]: value })
-    console.log(JSON.stringify(form, null, 2))
   }
 
   const handleSubmit = (e) => {
     e.preventDefault()
     close(false)
     const valor = form.valor.replace(/[,]/g, '.')
-    setAlert(true)
     saveData(date, {
       ...form,
       valor: parseFloat(valor),
@@ -53,26 +52,13 @@ const AddTransaction = ({ close }) => {
     })
     saveDate(date, { receita: form.receita == 'true' ? true : false })
 
-    return <AlertMessage message={status} alert={setAlert} />
-  }
-
-  const moneyMask = (e) => {
-    let value = e.target.value
-
-    value = value + ''
-    value = parseInt(value.replace(/[\D]+/g, ''))
-    value = value + ''
-    value = value.replace(/([0-9]{2})$/g, ',$1')
-
-    if (value.length > 6 && value.length < 9) {
-      value = value.replace(/([0-9]{3}),([0-9]{2}$)/g, '.$1,$2')
+    /* const root = document.querySelector('.main__alertMessage')
+    console.log('render', root)
+    ReactDom.render(<AlertMessage message="teste" />, root)
+ */
+    {
+      /* <AlertMessage message="teste" /> */
     }
-    if (value.length >= 9) {
-      value = value.replace(/([0-9]{3})([0-9]{3}),([0-9]{2}$)/g, '.$1.$2,$3')
-    }
-
-    e.target.value = value
-    if (value == 'NaN') e.target.value = ''
   }
 
   const handleInvalid = (e) => {
@@ -126,6 +112,8 @@ const AddTransaction = ({ close }) => {
               name="receita"
               value={true}
               onChange={handleChange}
+              onInvalid={handleInvalid}
+              submit={submit.toString()}
               required
             />
             <label htmlFor="arrowUp">
@@ -139,6 +127,8 @@ const AddTransaction = ({ close }) => {
               name="receita"
               value="false"
               onChange={handleChange}
+              onInvalid={handleInvalid}
+              submit={submit.toString()}
               required
             />
             <label htmlFor="arrowDown">
@@ -149,6 +139,7 @@ const AddTransaction = ({ close }) => {
 
         <button type="submit">Adicionar</button>
       </form>
+
       {/* {alert && <AlertMessage message={status} alert={setAlert} />} */}
     </>
   )

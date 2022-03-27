@@ -3,7 +3,6 @@ import { UserContext } from '../context'
 import { fire } from '../services'
 
 const useGetData = (path) => {
-  const { user } = useContext(UserContext)
   const [data, setData] = useState(null)
   useEffect(() => {
     // pegando os dados da base de dados

@@ -5,6 +5,7 @@ import WhichIcon from './WhichIcon'
 import useDelete from '../../hooks/useDelete'
 import { useParams } from 'react-router-dom'
 import AlertMessage from '../AlertMessage'
+import ReactDom from 'react-dom'
 
 const LoopCard = ({ data }) => {
   const { remove, status } = useDelete()
@@ -20,9 +21,11 @@ const LoopCard = ({ data }) => {
     .padStart(2, '0')}/${createdAt.getFullYear().toString().substr(-2)}`
 
   const handleRemove = () => {
-    setAlert(false)
     remove(`/movimentacoes/${date}/${data.index}`)
-    setAlert(true)
+
+    /* const root = document.querySelector('.main__alertMessage')
+    console.log('render', root)
+    ReactDom.render(<AlertMessage message="Transação removida" />, root) */
   }
   return (
     <>

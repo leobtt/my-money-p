@@ -72,6 +72,7 @@
       padding: 15px 40px 15px 10px;
       margin: 15px 0;
       text-align: center;
+      font-weight: 300;
 
       &:hover {
         border-top-left-radius: 20px;
@@ -91,6 +92,7 @@
       }
 
       &.active {
+        font-weight: 500;
         border-top-left-radius: 20px;
         border-bottom-left-radius: 20px;
         cursor: pointer;
@@ -155,8 +157,8 @@
       border-top: 5px solid black;
       padding: 1rem 0;
       @include themify($themes) {
-        color: themed(text);
         background-color: themed(mainColor);
+        color: themed(text);
       }
 
       &:hover {

@@ -33,6 +33,7 @@ const Main = () => {
           <Graphics />
         </div>
       </div>
+      <div className="main__alertMessage"></div>
     </div>
   )
 }

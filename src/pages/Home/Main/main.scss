@@ -61,6 +61,13 @@
       }
     }
   }
+
+  &__alertMessage {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: max-content;
+  }
 }
 
 /* Input range theme select */

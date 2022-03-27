@@ -8,37 +8,41 @@ import LoopCard from './LoopCard'
 
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline'
 import AddTransaction from '../../pages/Home/Main/AddTransaction'
-import { Translate } from '@mui/icons-material'
 
 const HistoricCard = () => {
   const { date } = useParams()
-  const data = useGetData(`/movimentacoes/${date}`)
   const [order, setOrder] = useState(null)
   const [addTransaction, setAddTransaction] = useState(false)
 
   useEffect(() => {
-    fire
+    const ref = fire
       .database()
       .ref(`${localStorage.getItem('uid')}/movimentacoes/${date}`)
       .orderByChild('createdAt')
-      .on('value', (snapshot) => {
-        const feed = []
-        const data = snapshot.val()
 
-        /* console.log('data sem ordem', data[listSnap].createdAt) */
-        snapshot.forEach((values) => {
-          Object.keys(data).forEach((listSnap) => {
-            const value = values.val()
-            // ordenando e encontrando index
-            if (value.createdAt === data[listSnap].createdAt) {
-              feed.push([{ value, index: listSnap }])
-            }
-          })
+    ref.on('value', (snapshot) => {
+      const feed = []
+      const data = snapshot.val()
+
+      /* console.log('data sem ordem', data[listSnap].createdAt) */
+      snapshot.forEach((values) => {
+        Object.keys(data).forEach((listSnap) => {
+          const value = values.val()
+          // ordenando e encontrando index
+          if (value.createdAt === data[listSnap].createdAt) {
+            feed.push([{ value, index: listSnap }])
+            /* setOrder([{ value, index: listSnap }]) */
+          }
         })
-
-        setOrder(feed)
       })
+      setOrder(feed)
+
+      return () => {
+        setOrder({ value: [], index: [] })
+      }
+    })
   }, [date])
+
   return (
     <>
       <div className="alignTitle">

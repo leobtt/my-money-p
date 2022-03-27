@@ -19,6 +19,7 @@ body,
   font-family: 'Outfit', sans-serif;
   height: 100%;
   width: 100%;
+  overflow-x: hidden;
   @include themify($themes) {
     background-color: themed(mainColor);
   }

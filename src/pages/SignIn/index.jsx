@@ -31,11 +31,8 @@ const SignIn = () => {
       localStorage.setItem('uid', login.user.uid)
 
       /* Buscando a data para redirecionamento de rota */
-      const searchNavigate = await fire
-        .database()
-        .ref(`${login.user.uid}/movimentacoes`)
-        .limitToFirst(1)
-      searchNavigate.on('value', (snapshot) => {
+      const searchNavigate = await fire.database().ref(`${login.user.uid}/meses`).limitToFirst(1)
+      searchNavigate.once('value', (snapshot) => {
         navigate(`/${Object.keys(snapshot.val())[0]}`)
       })
     } catch (err) {

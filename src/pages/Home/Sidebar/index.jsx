@@ -5,7 +5,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { rewriteDate } from '../../../utils/rewriteDate'
 import './sidebar.scss'
 import { UserContext } from '../../../context'
-import { CloseRounded, Logout } from '@mui/icons-material'
+import { CloseRounded } from '@mui/icons-material'
 
 const ShowMonths = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12']
 
@@ -50,6 +50,7 @@ const Sidebar = () => {
                 to={month}
                 key={index}
                 className={`sidebar__menu__link ${month === activeIndex ? 'active' : ''}`}
+                onClick={() => setOpenMenu(false)}
               >
                 {rewriteDate(month)}
               </Link>

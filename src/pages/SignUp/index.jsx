@@ -1,10 +1,8 @@
-import React, { useContext, useState } from 'react'
+import React, { useState } from 'react'
 import fire from '../../services/firebase-config'
 import { Link, useNavigate } from 'react-router-dom'
-import { UserContext } from '../../context'
 import Sign from '../../components/Sign'
 import Input from '../../components/Input'
-import RedirectSpecificDate from '../../hooks/RedirectSpecificDate'
 
 const initialState = {
   name: '',
