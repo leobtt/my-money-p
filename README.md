@@ -21,7 +21,7 @@ Objetivo desta aplicação é oferecer um controle de finanças pessoais.
 
 Uma versão online deste projeto pode ser encontrada em: https://mymoney-l.web.app/.
 
-![MyMoney](https://user-images.githubusercontent.com/54782652/160297743-dc417972-5d72-4a34-9b2e-3390fc7f935c.gif)
+![MyMoney](https://user-images.githubusercontent.com/54782652/160298741-3349874e-db56-45b5-9968-9f289be4ed69.gif)
 
 ## 🚀 Construído com:
 
